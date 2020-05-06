@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="~{index::menu-title}"></head>
+<head th:insert="~{index::menu-title}">
+<!--    <script src="/laydate/laydate.js"></script>-->
+<!--    <link rel="stylesheet" href="../static/laydate/theme/default/laydate.css">-->
+</head>
 
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 
@@ -19,7 +22,7 @@
                     <table class="search-tab">
                         <tr>
                             <th width="70">日期:</th>
-                            <td><input class="common-text" placeholder="日期" id="text1" name="text1" type="text" ></td>
+                            <td><input class="common-text" placeholder="日期" id="test1" name="text1" type="text" ></td>
 <!--                            <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>-->
                             <th width="70">车号:</th>
                             <td><input class="common-text" placeholder="车号" id="orderCar" name="orderCar" type="text" th:value="${searchKeyCar}"></td>
@@ -136,13 +139,14 @@
         });
     }
 </script>
-<script src="/js/laydate.js"></script> <!-- 改成你的路径 -->
+<script src="\laydate\laydate.js"></script> <!-- 改成你的路径 -->
 <script>
-    lay('#version').html('-v'+ laydate.v);
+    // lay('#version').html('-v'+ laydate.v);
 
     //执行一个laydate实例
     laydate.render({
         elem: '#test1' //指定元素
     });
+
 </script>
 </html>

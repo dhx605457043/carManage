@@ -1,16 +1,12 @@
 package com.carmanage.controller;
 
-import com.carmanage.carDao.CarListDao;
-import com.carmanage.entity.CarEntity;
 import com.carmanage.entity.EX.CarEntityEx;
 import com.carmanage.service.CarListService;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
