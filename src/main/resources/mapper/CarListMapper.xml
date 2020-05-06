@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.carmanage.carDao.CarListDao">
+    <resultMap id="BaseResultMap" type="CarEntityEx"></resultMap>
+    <select id="carListPage" resultType="com.carmanage.entity.EX.CarEntityEx" parameterType="com.carmanage.entity.EX.CarEntityEx">
+        select *
+        from carList
+        left join driverList on carList.carDriverId=driverList.driverId
+        <where>
+            <if test="carNumber != null and carNumber != ''">
+                carNumber like concat('%', #{carNumber}, '%')
+            </if>
+        </where>
+    </select>
+    <select id="findCar" resultType="com.carmanage.entity.CarEntity" parameterType="com.carmanage.entity.CarEntity">
+        select * from carList where carNumber like concat(#{carNumber}, '%')
+    </select>
+</mapper>

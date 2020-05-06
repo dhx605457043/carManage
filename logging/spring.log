@@ -1,0 +1,66 @@
+2020-05-05 09:09:47.405  INFO 14568 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-05 09:09:57.863  INFO 15072 --- [main] com.carmanage.CarmanageApplication       : Starting CarmanageApplication on tomdembp with PID 15072 (/Users/tom_wang/MineProject/JavaProgram/carManage/target/classes started by tom_wang in /Users/tom_wang/MineProject/JavaProgram/carManage)
+2020-05-05 09:09:57.871  INFO 15072 --- [main] com.carmanage.CarmanageApplication       : No active profile set, falling back to default profiles: default
+2020-05-05 09:09:59.473  INFO 15072 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8989 (http)
+2020-05-05 09:09:59.483  INFO 15072 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-05 09:09:59.484  INFO 15072 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-05-05 09:09:59.570  INFO 15072 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-05 09:09:59.571  INFO 15072 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1549 ms
+2020-05-05 09:10:00.171  INFO 15072 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-05 09:10:00.358  INFO 15072 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-05-05 09:10:00.651  INFO 15072 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8989 (http) with context path ''
+2020-05-05 09:10:00.657  INFO 15072 --- [main] com.carmanage.CarmanageApplication       : Started CarmanageApplication in 3.859 seconds (JVM running for 5.516)
+2020-05-05 09:10:31.822  INFO 15072 --- [http-nio-8989-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-05 09:10:31.822  INFO 15072 --- [http-nio-8989-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-05 09:10:31.832  INFO 15072 --- [http-nio-8989-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2020-05-05 09:11:33.983  INFO 15072 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-05 09:11:41.587  INFO 15082 --- [main] com.carmanage.CarmanageApplication       : Starting CarmanageApplication on tomdembp with PID 15082 (/Users/tom_wang/MineProject/JavaProgram/carManage/target/classes started by tom_wang in /Users/tom_wang/MineProject/JavaProgram/carManage)
+2020-05-05 09:11:41.620  INFO 15082 --- [main] com.carmanage.CarmanageApplication       : No active profile set, falling back to default profiles: default
+2020-05-05 09:11:43.631  INFO 15082 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8989 (http)
+2020-05-05 09:11:43.643  INFO 15082 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-05 09:11:43.643  INFO 15082 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-05-05 09:11:43.734  INFO 15082 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-05 09:11:43.734  INFO 15082 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1957 ms
+2020-05-05 09:11:44.447  INFO 15082 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-05 09:11:44.631  INFO 15082 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-05-05 09:11:44.890  INFO 15082 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8989 (http) with context path ''
+2020-05-05 09:11:44.895  INFO 15082 --- [main] com.carmanage.CarmanageApplication       : Started CarmanageApplication in 4.71 seconds (JVM running for 6.634)
+2020-05-05 09:12:06.771  INFO 15082 --- [http-nio-8989-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-05 09:12:06.772  INFO 15082 --- [http-nio-8989-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-05 09:12:06.783  INFO 15082 --- [http-nio-8989-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2020-05-05 09:13:01.635  INFO 15082 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-05 09:13:08.892  INFO 15089 --- [main] com.carmanage.CarmanageApplication       : Starting CarmanageApplication on tomdembp with PID 15089 (/Users/tom_wang/MineProject/JavaProgram/carManage/target/classes started by tom_wang in /Users/tom_wang/MineProject/JavaProgram/carManage)
+2020-05-05 09:13:08.898  INFO 15089 --- [main] com.carmanage.CarmanageApplication       : No active profile set, falling back to default profiles: default
+2020-05-05 09:13:10.618  INFO 15089 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8989 (http)
+2020-05-05 09:13:10.629  INFO 15089 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-05 09:13:10.629  INFO 15089 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-05-05 09:13:10.716  INFO 15089 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-05 09:13:10.716  INFO 15089 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1674 ms
+2020-05-05 09:13:11.278  INFO 15089 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-05 09:13:11.446  INFO 15089 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-05-05 09:13:11.685  INFO 15089 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8989 (http) with context path ''
+2020-05-05 09:13:11.689  INFO 15089 --- [main] com.carmanage.CarmanageApplication       : Started CarmanageApplication in 4.207 seconds (JVM running for 6.178)
+2020-05-05 09:14:11.687  INFO 15089 --- [http-nio-8989-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-05 09:14:11.687  INFO 15089 --- [http-nio-8989-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-05 09:14:11.694  INFO 15089 --- [http-nio-8989-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2020-05-05 09:17:48.463  INFO 15089 --- [http-nio-8989-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-05 09:17:48.466  WARN 15089 --- [http-nio-8989-exec-6] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2020-05-05 09:17:48.730  INFO 15089 --- [http-nio-8989-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-05 09:49:04.258  INFO 15089 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-05 09:49:04.264  INFO 15089 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-05-05 09:49:04.271  INFO 15089 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-05-05 09:49:11.327  INFO 15152 --- [main] com.carmanage.CarmanageApplication       : Starting CarmanageApplication on tomdembp with PID 15152 (/Users/tom_wang/MineProject/JavaProgram/carManage/target/classes started by tom_wang in /Users/tom_wang/MineProject/JavaProgram/carManage)
+2020-05-05 09:49:11.334  INFO 15152 --- [main] com.carmanage.CarmanageApplication       : No active profile set, falling back to default profiles: default
+2020-05-05 09:49:12.856  INFO 15152 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8989 (http)
+2020-05-05 09:49:12.867  INFO 15152 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-05 09:49:12.868  INFO 15152 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-05-05 09:49:12.957  INFO 15152 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-05 09:49:12.958  INFO 15152 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1445 ms
+2020-05-05 09:49:13.596  INFO 15152 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-05 09:49:13.776  INFO 15152 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-05-05 09:49:14.068  INFO 15152 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8989 (http) with context path ''
+2020-05-05 09:49:14.073  INFO 15152 --- [main] com.carmanage.CarmanageApplication       : Started CarmanageApplication in 3.902 seconds (JVM running for 5.762)
+2020-05-05 09:49:25.061  INFO 15152 --- [http-nio-8989-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-05 09:49:25.064  INFO 15152 --- [http-nio-8989-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-05-05 09:49:25.077  INFO 15152 --- [http-nio-8989-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 13 ms
+2020-05-05 22:31:40.961  INFO 15152 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

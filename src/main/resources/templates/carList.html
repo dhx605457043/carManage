@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{index::menu-title}"></head>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+
+<body>
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div th:insert="~{index::menu-menu}"></div>
+    </div><!--/sidebar-->
+    <div class="main-wrap">
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a th:href="index">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">车辆管理</span></div>
+        </div>
+        <div class="search-wrap">
+            <div class="search-content">
+                <form method="get" action="/carLists">
+                    <table class="search-tab">
+                        <tr>
+                            <th width="70">车号:</th>
+                            <td><input class="common-text" placeholder="车号" id="carNumber" name="carNumber" type="text" th:value="${searchKey}"></td>
+                            <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="result-wrap">
+            <form name="myform" id="myform" method="post" action="/carLists">
+                <div class="result-title">
+                    <div class="result-list">
+                        <a th:href="insert"><i class="icon-font"></i>新增车辆</a>
+                    </div>
+                </div>
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <thead>
+                        <tr>
+                            <th>车牌</th>
+                            <th>司机姓名</th>
+                            <th>司机电话</th>
+                            <th>司机住址</th>
+                            <th>司机身份证号</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="car:${cars}">
+                            <td th:text="${car.carNumber}"></td>
+                            <td th:text="${car.driverName}"></td>
+                            <td th:text="${car.driverPhoneNumber}"></td>
+                            <td th:text="${car.driverAddress}"></td>
+                            <td th:text="${car.driverIDCard}"></td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <div th:class="list-page">
+                        <span th:text="'共' + (${pages}) + '页'"></span>
+                        <span th:text="'当前第' + (${pageNo} + '页')"></span>
+                        <a th:href="@{/carLists(pageNO=1)}">首页</a>
+                        <span th:if="${pageNo} != 1">
+                            <a th:href="@{/carLists(pageNo=${pageNo} - 1)}"> 上一页 </a>
+                        </span>
+                        <span th:if="${pageNo} != ${pages}">
+                            <a th:href="@{/carLists(pageNo=${pageNo} + 1)}"> 下一页 </a>
+                        </span>
+                        <a th:href="@{/carLists(pageNo=${pages})}">尾页</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--/main-->
+</div>
+
+</body>
+<script th:inline="javascript">
+    function findCar() {
+        var carNumber1 = $("#carNumber").val();  // $("#carNumber") 通过 id 查找对应页面元素  .val() 获取元素value值方法  并付给名字为carNumber1 的变量
+        console.log(carNumber);                  // 后台输出参数值
+        var param = {};                          // 定义JSON变量
+        var url = "/findCar"               // 后台接收controller 地址
+        param.carNumber = carNumber1;            // 给json变量传入参数   key为： carNumber（后台接收controller的id名字）   value为： carNumber1
+        $.ajax({
+            url: url,
+            type: "GET",                         // 请求类型 常用 GET、POST  ,  Springboot  get请求对应  @GetMapping（等同于 @RequestMapping(method = Requst.GET)）     post请求对应 @PostMapping   （等同于 @RequestMapping(method = Requst.POST)）
+            dataType: "JSON",                    // 后台返回数据类型  常用 JSON、String
+            data: param,                         // 后台接收参数
+            success: function(result) {
+                console.log(result);             // ajax 调用成功返回的方法  result为返回的参数，名字不固定
+            },
+            error: function(err) {               // ajax 调用失败返回的方法  err为返回的参数，名字不固定
+            }
+        });
+    }
+</script>
+</html>

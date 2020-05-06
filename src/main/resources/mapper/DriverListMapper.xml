@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.carmanage.carDao.DriverListDao">
+    <resultMap id="BaseResultMap" type="DriverEntity"></resultMap>
+    <select id="driverListPage"
+            resultType="com.carmanage.entity.DriverEntity"
+            parameterType="com.carmanage.entity.DriverEntity">
+        select *
+        from driverList
+        <where>
+            <if test="driverPhoneNumber != null and driverPhoneNumber != ''">
+                driverPhoneNumber like concat(#{driverPhoneNumber}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+
+<head th:fragment="menu-title">
+    <meta charset="UTF-8"/>
+    <title>车辆管理系统后台管理</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-content" th:fragment="menu-menu">
+            <ul class="sidebar-list">
+                <li>
+                    <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
+                    <ul class="sub-menu">
+                        <li><a th:href="@{/carLists}"><i class="icon-font">&#xe008;</i>车辆管理</a></li>
+                        <li><a href="design.html"><i class="icon-font">&#xe005;</i>证件管理</a></li>
+                        <li><a th:href="@{/driverListsAll}"><i class="icon-font">&#xe006;</i>司机管理</a></li>
+                        <li><a th:href="@{/orderLists}"><i class="icon-font">&#xe005;</i>订单管理</a></li>
+
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</body>
+<!--</html>-->
+</html>
