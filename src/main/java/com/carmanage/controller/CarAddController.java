@@ -8,6 +8,6 @@ public class CarAddController {
 
     @PostMapping(value = "/addCar")
     public String addCar () {
-        return "insert";
+        return "carAdd";
     }
 }
