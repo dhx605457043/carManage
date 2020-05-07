@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Controller
 public class CarListController {
@@ -38,9 +39,18 @@ public class CarListController {
         JSONObject jsonObject = JSONObject.fromObject(car);
         System.out.println("jsonObject==>" + jsonObject);
         CarListEntity carListEntity = (CarListEntity) JSONObject.toBean(jsonObject, CarListEntity.class);
-        carListService.carAdd(carListEntity.getCarNumber());
+        String pattern = "([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼]{1}(([A-HJ-Z]{1}[A-HJ-NP-Z0-9]{5})|([A-HJ-Z]{1}(([DF]{1}[A-HJ-NP-Z0-9]{1}[0-9]{4})|([0-9]{5}[DF]{1})))|([A-HJ-Z]{1}[A-D0-9]{1}[0-9]{3}警)))|([0-9]{6}使)|((([沪粤川云桂鄂陕蒙藏黑辽渝]{1}A)|鲁B|闽D|蒙E|蒙H)[0-9]{4}领)|(WJ[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼·•]{1}[0-9]{4}[TDSHBXJ0-9]{1})|([VKHBSLJNGCE]{1}[A-DJ-PR-TVY]{1}[0-9]{5})";
+        boolean isMatch = Pattern.matches(pattern, carListEntity.getCarNumber());
+//        System.out.println("字符串中是否包含了 'runoob' 子字符串? " + isMatch);
+        if (isMatch) {
+            carListService.carAdd(carListEntity.getCarNumber());
+            return "添加成功";
+        } else  {
+            return "请输入正确的车牌号";
+        }
+
 //        System.out.println(str2);
-        return "添加成功";
+
     }
 
 //    @RequestMapping("/addCar")
