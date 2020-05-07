@@ -8,5 +8,5 @@ import java.util.List;
 @Repository
 public interface CarListDao {
     List<CarListEntityEx> carListPage (CarListEntityEx carEntityEx);
-    String carAdd (Integer carNumber);
+   void carAdd (String carNumber);
 }

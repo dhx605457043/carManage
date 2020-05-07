@@ -24,9 +24,8 @@ public class CarListServiceImpl implements CarListService {
     }
 
     @Override
-    public String carAdd(Integer carNumber) {
-        String str = carListDao.carAdd(carNumber);
-        return str;
+    public void carAdd (String carNumber) {
+     carListDao.carAdd(carNumber);
     }
     //    @Override
 //    public List<CarEntityEx> driverList(CarEntityEx carEntityEx) {

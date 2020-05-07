@@ -1,13 +1,14 @@
 package com.carmanage.controller;
 
+import com.carmanage.entity.CarListEntity;
 import com.carmanage.entity.EX.CarListEntityEx;
 import com.carmanage.service.CarListService;
 import com.github.pagehelper.PageInfo;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -30,10 +31,27 @@ public class CarListController {
         return "carList";
     }
     @PostMapping(value = "/carAdd")
-    public int addCar () {
-//        String str = carListService.carAdd(carNumber);
-//        System.out.println(str);
-        return 1;
+    @RequestMapping("/addCar")
+    @ResponseBody
+    public String addCar (@RequestParam("car") String car) {
+
+        JSONObject jsonObject = JSONObject.fromObject(car);
+        System.out.println("jsonObject==>" + jsonObject);
+        CarListEntity carListEntity = (CarListEntity) JSONObject.toBean(jsonObject, CarListEntity.class);
+        carListService.carAdd(carListEntity.getCarNumber());
+//        System.out.println(str2);
+        return "添加成功";
     }
+
+//    @RequestMapping("/addCar")
+//    @ResponseBody
+//    public String jsonArrayAdd(@RequestParam("ids") String ids) {
+//
+////        JSONObject jsonObject = JSONObject.fromObject(ids);
+////        System.out.println("jsonObject==>" + jsonObject);
+////        Student stu = (Student) JSONObject.toBean(jsonObject, Student.class);
+////        System.out.println("stu==>" + stu);
+//        return "成功了!";
+//    }
 
 }

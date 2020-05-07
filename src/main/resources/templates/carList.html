@@ -27,14 +27,18 @@
             </div>
         </div>
         <div class="result-wrap">
-            <form name="myform" id="myform" method="post" action="/carLists">
+<!--            <form th:method="post">-->
                 <div class="result-title">
                     <div class="result-list">
-                        <td><input class="common-text" id="" name="" size="20" type="text" th:value="${searchKey}"></td>
-<!--                        <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>-->
-                        <a th:href="@{/carAdd}"><i class="icon-font" method="post"></i>添加车辆</a>
+                        <input class="common-text" id="carNumber" name="carNumber" size="20" type="text">
+                        <button onclick="addCar()" class="btn btn-primary">添加车辆</button>
                     </div>
+                    <!--                    <a><i class="btn btn-primary btn2" method="post" th:value="添加车辆"></i></a>-->
                 </div>
+<!--            </form>-->
+
+            <form name="myform" id="myform" method="post" action="/carLists">
+
                 <div class="result-content">
                     <table class="result-tab" width="100%">
                         <thead>
@@ -99,4 +103,28 @@
 <!--        });-->
 <!--    }-->
 <!--</script>-->
+<script>
+
+    function addCar() {
+        var carNumber = $("#carNumber").val();
+
+        var car = {
+            carId:"",carNumber:carNumber,carDriverId:""
+        }
+        console.log("carNumber:" + carNumber);
+        alert("carNumber:"+carNumber)
+        $.ajax({
+
+            type:"post",
+            url:"/addCar",
+            datatype:"json",
+            data:{car:JSON.stringify(car)},
+            success:function(data){
+                alert(data) ;
+            }
+        });
+
+    }
+
+</script>
 </html>

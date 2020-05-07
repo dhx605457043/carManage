@@ -15,7 +15,7 @@
     <select id="findCar" resultType="com.carmanage.entity.CarListEntity" parameterType="com.carmanage.entity.CarListEntity">
         select * from carList where carNumber like concat(#{carNumber}, '%')
     </select>
-    <insert id="carAdd" parameterType="String">
+    <insert id="carAdd" parameterType="com.carmanage.entity.CarListEntity">
         insert into carList (carNumber)values (#{carNumber})
     </insert>
 </mapper>
