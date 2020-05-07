@@ -1,8 +1,7 @@
 package com.carmanage.service.impl;
 
 import com.carmanage.carDao.CarListDao;
-import com.carmanage.entity.CarEntity;
-import com.carmanage.entity.EX.CarEntityEx;
+import com.carmanage.entity.EX.CarListEntityEx;
 import com.carmanage.service.CarListService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -17,14 +16,19 @@ public class CarListServiceImpl implements CarListService {
     private CarListDao carListDao;
 
     @Override
-    public PageInfo<CarEntityEx> carListPage(Integer pageNum, Integer pageSize, CarEntityEx carEntity) {
+    public PageInfo<CarListEntityEx> carListPage(Integer pageNum, Integer pageSize, CarListEntityEx carEntity) {
         PageHelper.startPage(pageNum,pageSize);
-        List<CarEntityEx> carEntityList = carListDao.carListPage(carEntity);
-        PageInfo<CarEntityEx> carEntityPageInfo = new PageInfo<>(carEntityList);
+        List<CarListEntityEx> carEntityList = carListDao.carListPage(carEntity);
+        PageInfo<CarListEntityEx> carEntityPageInfo = new PageInfo<>(carEntityList);
         return carEntityPageInfo;
     }
 
-//    @Override
+    @Override
+    public String carAdd(Integer carNumber) {
+        String str = carListDao.carAdd(carNumber);
+        return str;
+    }
+    //    @Override
 //    public List<CarEntityEx> driverList(CarEntityEx carEntityEx) {
 //        List<CarEntityEx> carEntityExList = carListDao.carListPage(carEntityEx);
 //        return carEntityExList;

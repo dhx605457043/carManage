@@ -1,12 +1,11 @@
 package com.carmanage.service;
 
-import com.carmanage.entity.DriverEntity;
-import com.carmanage.entity.EX.CarEntityEx;
+import com.carmanage.entity.DriverListEntity;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 public interface DriverListService {
-    List<DriverEntity> driverList (DriverEntity driverEntity);
-    PageInfo<DriverEntity> allDriverList (Integer pageNo, Integer pageSize, DriverEntity driverEntity);
+    List<DriverListEntity> driverList (DriverListEntity driverListEntity);
+    PageInfo<DriverListEntity> allDriverList (Integer pageNo, Integer pageSize, DriverListEntity driverListEntity);
 }

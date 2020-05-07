@@ -1,8 +1,6 @@
-package com.carmanage.entity.EX;
+package com.carmanage.entity;
 
-import com.carmanage.entity.CarEntity;
-
-public class CarEntityEx extends CarEntity {
+public class DriverListEntity {
     private String driverName;
     private String driverAddress;
     private int driverId;

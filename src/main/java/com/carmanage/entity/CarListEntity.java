@@ -3,7 +3,7 @@ package com.carmanage.entity;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 
-public class CarEntity {
+public class CarListEntity {
     private int carId;
     private String carNumber;
     private String carDriverId;
