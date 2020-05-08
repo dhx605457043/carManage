@@ -1,6 +1,7 @@
 package com.carmanage.service.impl;
 
 import com.carmanage.carDao.CarListDao;
+import com.carmanage.entity.CarListEntity;
 import com.carmanage.entity.EX.CarListEntityEx;
 import com.carmanage.service.CarListService;
 import com.github.pagehelper.PageHelper;
@@ -24,24 +25,19 @@ public class CarListServiceImpl implements CarListService {
     }
 
     @Override
-    public void carAdd (String carNumber) {
-     carListDao.carAdd(carNumber);
+    public void carAdd (String carNumber, int carLicensePlateAreaCode) {
+     carListDao.carAdd(carNumber,carLicensePlateAreaCode);
     }
-    //    @Override
-//    public List<CarEntityEx> driverList(CarEntityEx carEntityEx) {
-//        List<CarEntityEx> carEntityExList = carListDao.carListPage(carEntityEx);
-//        return carEntityExList;
-//    }
-//    @Override
-//    public PageInfo<CarEntity> carListPage(Integer pageNo, Integer pageSize, CarEntity carEntity) {
-//        PageHelper.startPage(pageNo,pageSize);
-//        List<CarEntity> carEntityList = carListDao.carListPage(carEntity);
-//        PageInfo<CarEntity> carEntityPageInfo = new PageInfo<>(carEntityList);
-//        //        model.addAttribute("pageNo",pageInfo.getPageNum());
-////        model.addAttribute("pages",pageInfo.getPages());
-////        CarListResponse carListResponse = new CarListResponse(carEntityList,
-////                carEntityPageInfo.getPageNum(),
-////                carEntityPageInfo.getPages());
-//        return carListResponse;
-//    }
+
+    @Override
+    public CarListEntityEx selectCarByCarId(int carId) {
+        CarListEntityEx carModel = carListDao.selectCarByCarId(carId);
+        return carModel;
+
+    }
+
+    @Override
+    public void updateCarByCarId(CarListEntity carListEntity) {
+        carListDao.updateCarByCarId(carListEntity);
+    }
 }

@@ -4,7 +4,7 @@ public class DriverListEntity {
     private String driverName;
     private String driverAddress;
     private int driverId;
-    private int driverPhoneNumber;
+    private String driverPhoneNumber;
     private String driverIDCard;
 
     public String getDriverName() {
@@ -31,11 +31,11 @@ public class DriverListEntity {
         this.driverId = driverId;
     }
 
-    public int getDriverPhoneNumber() {
+    public String getDriverPhoneNumber() {
         return driverPhoneNumber;
     }
 
-    public void setDriverPhoneNumber(int driverPhoneNumber) {
+    public void setDriverPhoneNumber(String driverPhoneNumber) {
         this.driverPhoneNumber = driverPhoneNumber;
     }
 

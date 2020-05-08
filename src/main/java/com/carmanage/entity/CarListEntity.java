@@ -1,12 +1,19 @@
 package com.carmanage.entity;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
-
 public class CarListEntity {
     private int carId;
     private String carNumber;
-    private String carDriverId;
+    private int carDriverId;
+//    private String carLicensePlateAreaName;
+    private int carLicensePlateAreaCode;
+
+    public int getCarLicensePlateAreaCode() {
+        return carLicensePlateAreaCode;
+    }
+
+    public void setCarLicensePlateAreaCode(int carLicensePlateAreaCode) {
+        this.carLicensePlateAreaCode = carLicensePlateAreaCode;
+    }
 
     public int getCarId() {
         return carId;
@@ -24,11 +31,11 @@ public class CarListEntity {
         this.carNumber = carNumber;
     }
 
-    public String getCarDriverId() {
+    public int getCarDriverId() {
         return carDriverId;
     }
 
-    public void setCarDriverId(String carDriverId) {
+    public void setCarDriverId(int carDriverId) {
         this.carDriverId = carDriverId;
     }
 }

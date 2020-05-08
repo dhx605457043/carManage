@@ -31,43 +31,16 @@
             <div class="result-title">
                 <div class="result-list">
                     <select name="carn" id="carn">
-                        <option value="1" selected="" class="common-text">辽</option>
-                        <option value="2">黑</option>
-                        <option value="3">京</option>
-                        <option value="4">津</option>
-                        <option value="5">沪</option>
-                        <option value="6">渝</option>
-                        <option value="7">冀</option>
-                        <option value="8">豫</option>
-                        <option value="9">云</option>
-                        <option value="10">琼</option>
-                        <option value="11">湘</option>
-                        <option value="12">皖</option>
-                        <option value="13">鲁</option>
-                        <option value="14">苏</option>
-                        <option value="15">浙</option>
-                        <option value="16">赣</option>
-                        <option value="17">鄂</option>
-                        <option value="18">桂</option>
-                        <option value="19">甘</option>
-                        <option value="20">晋</option>
-                        <option value="21">蒙</option>
-                        <option value="22">陕</option>
-                        <option value="23">吉</option>
-                        <option value="24">闽</option>
-                        <option value="25">贵</option>
-                        <option value="26">粤</option>
-                        <option value="27">青</option>
-                        <option value="28">藏</option>
-                        <option value="29">川</option>
-                        <option value="30">宁</option>
+                        <option th:selected="${license.licensePlateAreaCode == 1}"
+                                th:each="license:${licenses}"
+                                th:value="${license.licensePlateAreaCode}"
+                                th:text="${license.licensePlateAreaName}">
+                        </option>
                     </select>
                     <input class="common-text" id="carnumber" name="carnumber" size="20" type="text" style="text-transform:uppercase;">
                     <button onclick="addCar()" class="btn btn-primary">添加车辆</button>
                 </div>
-                <!--                    <a><i class="btn btn-primary btn2" method="post" th:value="添加车辆"></i></a>-->
             </div>
-            <!--            </form>-->
 
             <form name="myform" id="myform" method="post" action="/carLists">
 
@@ -80,33 +53,37 @@
                             <th>司机电话</th>
                             <th>司机住址</th>
                             <th>司机身份证号</th>
-
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="car:${cars}">
-                            <td th:text="${car.carNumber}"></td>
+                            <td th:text="${car.licensePlateAreaName}+${car.carNumber}"></td>
                             <td th:text="${car.driverName}"></td>
                             <td th:text="${car.driverPhoneNumber}"></td>
                             <td th:text="${car.driverAddress}"></td>
                             <td th:text="${car.driverIDCard}"></td>
+                            <td>
+                                <a class="link-update" th:href="@{/carEdit/}+${car.carId}">修改</a>
+                                <a class="link-del" href="#">删除</a>
+                            </td>
 
                         </tr>
 
                         </tbody>
                     </table>
-                    <div th:class="list-page">
-                        <span th:text="'共' + (${pages}) + '页'"></span>
-                        <span th:text="'当前第' + (${pageNo} + '页')"></span>
-                        <a th:href="@{/carLists(pageNO=1)}">首页</a>
-                        <span th:if="${pageNo} != 1">
-                            <a th:href="@{/carLists(pageNo=${pageNo} - 1)}"> 上一页 </a>
-                        </span>
-                        <span th:if="${pageNo} != ${pages}">
-                            <a th:href="@{/carLists(pageNo=${pageNo} + 1)}"> 下一页 </a>
-                        </span>
-                        <a th:href="@{/carLists(pageNo=${pages})}">尾页</a>
-                    </div>
+<!--                    <div th:class="list-page">-->
+<!--                        <span th:text="'共' + (${pages}) + '页'"></span>-->
+<!--                        <span th:text="'当前第' + (${pageNo} + '页')"></span>-->
+<!--                        <a th:href="@{/carLists(pageNO=1)}">首页</a>-->
+<!--                        <span th:if="${pageNo} != 1">-->
+<!--                            <a th:href="@{/carLists(pageNo=${pageNo} - 1)}"> 上一页 </a>-->
+<!--                        </span>-->
+<!--                        <span th:if="${pageNo} != ${pages}">-->
+<!--                            <a th:href="@{/carLists(pageNo=${pageNo} + 1)}"> 下一页 </a>-->
+<!--                        </span>-->
+<!--                        <a th:href="@{/carLists(pageNo=${pages})}">尾页</a>-->
+<!--                    </div>-->
                 </div>
             </form>
         </div>
@@ -140,45 +117,12 @@
     function addCar() {
         var carn = $("#carn").val();
         var carnumber = $("#carnumber").val();
-        var carQ;
-        switch (carn) {
-            case 1: carQ = "辽";
-            case 2: carQ = "黑";
-            case 3: carQ = "京";
-            case 4: carQ = "津";
-            case 5: carQ = "沪";
-            case 6: carQ = "渝";
-            case 7: carQ = "冀";
-            case 8: carQ = "豫";
-            case 9: carQ = "云";
-            case 10: carQ = "琼";
-            case 11: carQ = "湘";
-            case 12: carQ = "皖";
-            case 13: carQ = "鲁";
-            case 14: carQ = "苏";
-            case 15: carQ = "浙";
-            case 16: carQ = "赣";
-            case 17: carQ = "鄂";
-            case 18: carQ = "桂";
-            case 19: carQ = "甘";
-            case 20: carQ = "晋";
-            case 21: carQ = "蒙";
-            case 22: carQ = "陕";
-            case 23: carQ = "吉";
-            case 24: carQ = "闽";
-            case 25: carQ = "贵";
-            case 26: carQ = "粤";
-            case 27: carQ = "青";
-            case 28: carQ = "藏";
-            case 29: carQ = "川";
-            case 30: carQ = "宁";
-            default: carQ = "辽";
-        }
+        var licensePlateAreaName=$("#carn").find("option:selected").text();
+
         var car = {
-            carId:"",carNumber:carQ + carnumber.toUpperCase(),carDriverId:""
+            carNumber:carnumber.toUpperCase(),carLicensePlateAreaCode:carn,licensePlateAreaName:licensePlateAreaName
         }
-        // console.log("carnumber:" + carnumber);
-        // alert("carnumber:"+carnumber)
+
         $.ajax({
 
             type:"post",

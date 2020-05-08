@@ -26,8 +26,14 @@ public class DriverListServiceImpl implements DriverListService {
     @Override
     public PageInfo<DriverListEntity> allDriverList(Integer pageNo, Integer pageSize, DriverListEntity driverListEntity) {
         PageHelper.startPage(pageNo,pageSize);
-        List<DriverListEntity> carEntityList = driverListDao.driverListPage(driverListEntity);
-        PageInfo<DriverListEntity> driverEntityPageInfo = new PageInfo<>(carEntityList);
+        List<DriverListEntity> driEntityList = driverListDao.driverListPage(driverListEntity);
+        PageInfo<DriverListEntity> driverEntityPageInfo = new PageInfo<>(driEntityList);
         return driverEntityPageInfo;
+    }
+
+    @Override
+    public List<DriverListEntity> allDriverListNoPage() {
+        List<DriverListEntity> driEntityList = driverListDao.selectAllDriver();
+        return driEntityList;
     }
 }

@@ -6,6 +6,7 @@
         select *
         from carList
         left join driverList on carList.carDriverId=driverList.driverId
+        left join licenseplatearealist on carList.carLicensePlateAreaCode=licenseplatearealist.licensePlateAreaCode
         <where>
             <if test="carNumber != null and carNumber != ''">
                 carNumber like concat('%', #{carNumber}, '%')
@@ -16,6 +17,21 @@
         select * from carList where carNumber like concat(#{carNumber}, '%')
     </select>
     <insert id="carAdd" parameterType="com.carmanage.entity.CarListEntity">
-        insert into carList (carNumber)values (#{carNumber})
+        insert into carList (carNumber,carLicensePlateAreaCode)values (#{carNumber},#{carLicensePlateAreaCode})
     </insert>
+    <select id="selectCarByCarId" resultType="com.carmanage.entity.EX.CarListEntityEx">
+        select *
+        from carList
+                 left join driverList on carList.carDriverId=driverList.driverId
+        where carId = #{carId}
+    </select>
+    <update id="updateCarByCarId" parameterType="com.carmanage.entity.CarListEntity">
+        update carList
+        set carDriverId=#{carDriverId} ,
+            carLicensePlateAreaCode=#{carLicensePlateAreaCode},
+            carNumber=#{carNumber}
+        where carId=#{carId}
+    </update>
+
+
 </mapper>

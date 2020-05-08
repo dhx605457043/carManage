@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface DriverListDao {
     List<DriverListEntity> driverListPage (DriverListEntity driverListEntity);
+    List<DriverListEntity> selectAllDriver ();
+
 }

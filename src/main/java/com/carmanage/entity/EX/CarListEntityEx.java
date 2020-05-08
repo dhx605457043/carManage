@@ -8,6 +8,25 @@ public class CarListEntityEx extends CarListEntity {
     private int driverId;
     private int driverPhoneNumber;
     private String driverIDCard;
+    private String licensePlateAreaName;
+    private int licensePlateAreaCode;
+
+
+    public String getLicensePlateAreaName() {
+        return licensePlateAreaName;
+    }
+
+    public void setLicensePlateAreaName(String licensePlateAreaName) {
+        this.licensePlateAreaName = licensePlateAreaName;
+    }
+
+    public int getLicensePlateAreaCode() {
+        return licensePlateAreaCode;
+    }
+
+    public void setLicensePlateAreaCode(int licensePlateAreaCode) {
+        this.licensePlateAreaCode = licensePlateAreaCode;
+    }
 
     public String getDriverName() {
         return driverName;

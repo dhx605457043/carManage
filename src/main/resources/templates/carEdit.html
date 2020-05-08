@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{index::menu-title}"></head>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+
+<body>
+
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div th:insert="~{index::menu-menu}"></div>
+    </div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list">
+                <i class="icon-font"></i>
+                <a href="index">首页</a>
+                <span class="crumb-step"></span>
+                <!--                <a class="crumb-name" href="carList">司机管理</a>-->
+                <span class="crumb-step">&gt;</span>
+                <span>新增车辆</span>
+            </div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="/jscss/admin/design/add" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody><tr>
+                            <th width="60"><i class="require-red"></i>车号：</th>
+                            <td>
+                                <select name="carn" id="carn">
+                                    <option th:selected="${license.licensePlateAreaCode} == ${car.carLicensePlateAreaCode}"
+                                            th:each="license:${licenses}" th:value="${license.licensePlateAreaCode}"
+                                            th:text="${license.licensePlateAreaName}"></option>
+                                </select>
+                                <input class="common-text required" id="carNumber" name="title" size="50" th:value="${car.carNumber}" style="text-transform:uppercase;" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>司机：</th>
+                            <td>
+                                <select name="driverI" id="driverI">
+                                    <option th:selected="${driver.driverId} == ${car.carDriverId}"
+                                            th:each="driver:${drivers}"
+                                            th:value="${driver.driverId}"
+                                            th:text="${driver.driverName}"></option>
+                                </select>
+                                <!--                                <input class="common-text required" id="title" name="title" size="50" value="" type="text">-->
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input class="btn btn-primary btn6 mr10" value="提交" onclick="upDataCar()" >
+                                <input class="btn btn6" onClick="history.go(-1)" value="返回" type="button">
+                            </td>
+                        </tr>
+                        <tr>
+
+                        </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+</div>
+</body>
+<script>
+    function upDataCar() {
+        var carNumber = $("#carNumber").val();
+        // carnumber.toUpperCase()
+        var car = {
+            carId: [[${car.carId}]],
+            carDriverId:$("#driverI").val(),
+            carLicensePlateAreaCode:$("#carn").val(),
+            carNumber:carNumber.toUpperCase()
+        };
+        // alert("carId" + [[${car.carId}]]+"carDriverId" + [[${car.carDriverId}]]+"carLicensePlateAreaCode" + [[${car.carLicensePlateAreaCode}]])
+        $.ajax({
+            type:"post",
+            url:"/updateCar",
+            datatype:"json",
+            data:{car:JSON.stringify(car)},
+            success:function (data) {
+                // alert(data);
+                location="[[@{/carLists}]]";
+            }
+        })
+    }
+</script>
+</html>

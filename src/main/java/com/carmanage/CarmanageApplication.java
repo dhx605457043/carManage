@@ -21,13 +21,11 @@ public class CarmanageApplication {
         WebMvcConfigurer adapter = new WebMvcConfigurer() {
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
-//                registry.addViewController("/templates/design.html").setViewName("design");
                 registry.addViewController("/index").setViewName("index");
                 registry.addViewController("/test").setViewName("test");
-
                 registry.addViewController("/driverAdd").setViewName("driverAdd");
-//                registry.addViewController("/design").setViewName("design");
-//                registry.addViewController("/insert").setViewName("insert");
+                registry.addViewController("/design").setViewName("design");
+//                registry.addViewController("/carEdit").setViewName("carEdit");
 //                registry.addViewController("/system").setViewName("system");
 //                registry.addViewController("/insert").setViewName("insert");
 //                registry.addViewController("/carList").setViewName("carList");

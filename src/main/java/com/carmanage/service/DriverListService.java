@@ -8,4 +8,6 @@ import java.util.List;
 public interface DriverListService {
     List<DriverListEntity> driverList (DriverListEntity driverListEntity);
     PageInfo<DriverListEntity> allDriverList (Integer pageNo, Integer pageSize, DriverListEntity driverListEntity);
+    List<DriverListEntity> allDriverListNoPage ();
+
 }

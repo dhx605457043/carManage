@@ -13,4 +13,8 @@
             </if>
         </where>
     </select>
+    <select id="selectAllDriver" resultType="com.carmanage.entity.DriverListEntity">
+        select *
+        from driverList
+    </select>
 </mapper>
