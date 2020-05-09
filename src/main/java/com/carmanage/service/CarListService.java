@@ -6,8 +6,9 @@ import com.github.pagehelper.PageInfo;
 
 public interface CarListService {
     PageInfo<CarListEntityEx> carListPage (Integer pageNo, Integer pageSize, CarListEntityEx carEntityEx);
-//    List<CarEntityEx> driverList (CarEntityEx carEntityEx);
     void carAdd (String carNumber,int carLicensePlateAreaCode);
     CarListEntityEx selectCarByCarId (int carId);
     void updateCarByCarId(CarListEntity carListEntity);
+    boolean selectCarByNumber (String carNumber);
+    void deleteCarById (int carId);
 }

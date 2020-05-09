@@ -15,7 +15,7 @@
         </div>
         <div class="search-wrap">
             <div class="search-content">
-                <form method="get" action="/driverListsAll">
+                <form method="get" action="/driverList/driverListsAll">
                     <table class="search-tab">
                         <tr>
                             <th width="70">手机号:</th>
@@ -32,7 +32,7 @@
                     <a th:href="driverAdd"><i class="icon-font"></i>添加司机</a>
                 </div>
             </div>
-            <form name="myform" id="myform" method="post" action="/driverLists">
+            <form name="myform" id="myform" method="post" action="/driverList/driverLists">
 
                 <div class="result-content">
                     <table class="result-tab" width="100%">
@@ -43,6 +43,7 @@
                             <th>司机电话</th>
                             <th>司机住址</th>
                             <th>司机身份证号</th>
+                            <th>操作</th>
 
                         </tr>
                         </thead>
@@ -53,7 +54,10 @@
                             <td th:text="${car.driverPhoneNumber}"></td>
                             <td th:text="${car.driverAddress}"></td>
                             <td th:text="${car.driverIDCard}"></td>
-
+                            <td>
+                                <a class="link-update" >修改</a>
+                                <a class="link-del" >删除</a>
+                            </td>
                         </tr>
 
                         </tbody>
@@ -61,14 +65,14 @@
                     <div th:class="list-page">
                         <span th:text="'共' + (${pages}) + '页'"></span>
                         <span th:text="'当前第' + (${pageNo} + '页')"></span>
-                        <a th:href="@{/dirverLists(pageNO=1)}">首页</a>
+                        <a th:href="@{/driverList/dirverLists(pageNO=1)}">首页</a>
                         <span th:if="${pageNo} != 1">
-                            <a th:href="@{/dirverLists(pageNo=${pageNo} - 1)}"> 上一页 </a>
+                            <a th:href="@{/driverList/dirverLists(pageNo=${pageNo} - 1)}"> 上一页 </a>
                         </span>
                         <span th:if="${pageNo} != ${pages}">
-                            <a th:href="@{/dirverLists(pageNo=${pageNo} + 1)}"> 下一页 </a>
+                            <a th:href="@{/driverList/dirverLists(pageNo=${pageNo} + 1)}"> 下一页 </a>
                         </span>
-                        <a th:href="@{/dirverLists(pageNo=${pages})}">尾页</a>
+                        <a th:href="@{/driverList/dirverLists(pageNo=${pages})}">尾页</a>
                     </div>
                 </div>
             </form>
@@ -83,7 +87,7 @@
         var driverPhoneNumber = $("#driverPhoneNumber").val();  // $("#carNumber") 通过 id 查找对应页面元素  .val() 获取元素value值方法  并付给名字为carNumber1 的变量
         console.log(driverPhoneNumber);                  // 后台输出参数值
         var param = {};                          // 定义JSON变量
-        var url = "/driverListsAll"               // 后台接收controller 地址
+        var url = "/driverList/driverListsAll"               // 后台接收controller 地址
         param.driverPhoneNumber = driverPhoneNumber;            // 给json变量传入参数   key为： carNumber（后台接收controller的id名字）   value为： carNumber1
         $.ajax({
             url: url,

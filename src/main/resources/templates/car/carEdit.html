@@ -85,12 +85,12 @@
         // alert("carId" + [[${car.carId}]]+"carDriverId" + [[${car.carDriverId}]]+"carLicensePlateAreaCode" + [[${car.carLicensePlateAreaCode}]])
         $.ajax({
             type:"post",
-            url:"/updateCar",
+            url:"/carManage/updateCar",
             datatype:"json",
             data:{car:JSON.stringify(car)},
             success:function (data) {
                 // alert(data);
-                location="[[@{/carLists}]]";
+                location="[[@{/carManage/carLists}]]";
             }
         })
     }

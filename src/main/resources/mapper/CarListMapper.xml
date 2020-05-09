@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.carmanage.carDao.CarListDao">
+<mapper namespace="com.carmanage.carDao.CarListMapper">
     <resultMap id="BaseResultMap" type="CarListEntityEx"></resultMap>
     <select id="carListPage" resultType="com.carmanage.entity.EX.CarListEntityEx" parameterType="com.carmanage.entity.EX.CarListEntityEx">
         select *
@@ -25,13 +25,23 @@
                  left join driverList on carList.carDriverId=driverList.driverId
         where carId = #{carId}
     </select>
+    <select id="selectCarByCarNumber" resultType="java.lang.Integer">
+        select *
+        from carList
+        where carNumber = #{carNumber}
+    </select>
     <update id="updateCarByCarId" parameterType="com.carmanage.entity.CarListEntity">
         update carList
-        set carDriverId=#{carDriverId} ,
+        set carDriverId=#{carDriverId},
             carLicensePlateAreaCode=#{carLicensePlateAreaCode},
             carNumber=#{carNumber}
         where carId=#{carId}
     </update>
+    <delete id="deleteCarByCarId">
+        delete
+        from carList
+        where carId=#{carId}
+    </delete>
 
 
 </mapper>

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CarLicenseListDao {
+public interface CarLicenseListMapper {
     List<CarLicenseListEntity> selectAllLicense ();
 }

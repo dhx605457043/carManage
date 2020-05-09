@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DriverListDao {
+public interface DriverListMapper {
     List<DriverListEntity> driverListPage (DriverListEntity driverListEntity);
     List<DriverListEntity> selectAllDriver ();
 

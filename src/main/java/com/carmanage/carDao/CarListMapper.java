@@ -7,9 +7,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CarListDao {
+public interface CarListMapper {
     List<CarListEntityEx> carListPage (CarListEntityEx carEntityEx);
    void carAdd (String carNumber,int carLicensePlateAreaCode);
    CarListEntityEx selectCarByCarId (int carId);
    void updateCarByCarId (CarListEntity carListEntity);
+   Integer selectCarByCarNumber (String carNumber);
+   void deleteCarByCarId (int carId);
 }

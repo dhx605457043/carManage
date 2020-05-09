@@ -1,6 +1,6 @@
 package com.carmanage.service.impl;
 
-import com.carmanage.carDao.DriverListDao;
+import com.carmanage.carDao.DriverListMapper;
 import com.carmanage.entity.DriverListEntity;
 import com.carmanage.service.DriverListService;
 import com.github.pagehelper.PageHelper;
@@ -14,7 +14,7 @@ import java.util.List;
 public class DriverListServiceImpl implements DriverListService {
 
     @Autowired
-    private DriverListDao driverListDao;
+    private DriverListMapper driverListDao;
     @Override
     public List<DriverListEntity> driverList(DriverListEntity driverListEntity) {
         List<DriverListEntity> driverList = driverListDao.driverListPage(driverListEntity);

@@ -1,6 +1,6 @@
 package com.carmanage.service.impl;
 
-import com.carmanage.carDao.CarListDao;
+import com.carmanage.carDao.CarListMapper;
 import com.carmanage.entity.CarListEntity;
 import com.carmanage.entity.EX.CarListEntityEx;
 import com.carmanage.service.CarListService;
@@ -14,30 +14,42 @@ import java.util.List;
 @Service
 public class CarListServiceImpl implements CarListService {
     @Autowired
-    private CarListDao carListDao;
+    private CarListMapper carListMapper;
 
     @Override
     public PageInfo<CarListEntityEx> carListPage(Integer pageNum, Integer pageSize, CarListEntityEx carEntity) {
         PageHelper.startPage(pageNum,pageSize);
-        List<CarListEntityEx> carEntityList = carListDao.carListPage(carEntity);
+        List<CarListEntityEx> carEntityList = carListMapper.carListPage(carEntity);
         PageInfo<CarListEntityEx> carEntityPageInfo = new PageInfo<>(carEntityList);
         return carEntityPageInfo;
     }
 
     @Override
     public void carAdd (String carNumber, int carLicensePlateAreaCode) {
-     carListDao.carAdd(carNumber,carLicensePlateAreaCode);
+        carListMapper.carAdd(carNumber,carLicensePlateAreaCode);
     }
 
     @Override
     public CarListEntityEx selectCarByCarId(int carId) {
-        CarListEntityEx carModel = carListDao.selectCarByCarId(carId);
+        CarListEntityEx carModel = carListMapper.selectCarByCarId(carId);
         return carModel;
 
     }
 
     @Override
     public void updateCarByCarId(CarListEntity carListEntity) {
-        carListDao.updateCarByCarId(carListEntity);
+        carListMapper.updateCarByCarId(carListEntity);
+    }
+
+    @Override
+    public boolean selectCarByNumber(String carNumber) {
+        Integer code = carListMapper.selectCarByCarNumber(carNumber);
+
+        return code == null ? true : false;
+    }
+
+    @Override
+    public void deleteCarById(int carId) {
+        carListMapper.deleteCarByCarId(carId);
     }
 }

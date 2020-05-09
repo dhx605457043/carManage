@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
+@RequestMapping("driverManage")
 public class DriverListController {
 
     @Autowired
@@ -19,17 +21,17 @@ public class DriverListController {
     @GetMapping(value = "/driverLists")
     public String allList (DriverListEntity driverListEntity) {
         List<DriverListEntity> list = driverListService.driverList(driverListEntity);
-        return "driverList";
+        return "driver/driverList";
     }
     @GetMapping(value = "/driverListsAll")
     public String driverList (Model model, DriverListEntity driverListEntity, HttpServletRequest request) {
         Integer pageNo = request.getParameter("pageNo") == null ? 1 : Integer.valueOf(request.getParameter("pageNo"));
-        PageInfo<DriverListEntity> pageInfo = driverListService.allDriverList(pageNo,5, driverListEntity);
+        PageInfo<DriverListEntity> pageInfo = driverListService.allDriverList(pageNo,20, driverListEntity);
         List<DriverListEntity> carListPage = pageInfo.getList();
         model.addAttribute("searchKey", "");
         model.addAttribute("cars",carListPage);
         model.addAttribute("pageNo",pageInfo.getPageNum());
         model.addAttribute("pages",pageInfo.getPages());
-        return "driverList";
+        return "driver/driverList";
     }
 }

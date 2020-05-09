@@ -15,7 +15,7 @@
         </div>
         <div class="search-wrap">
             <div class="search-content">
-                <form method="get" action="/carLists">
+                <form method="get" action="/carManage/carLists">
                     <table class="search-tab">
                         <tr>
                             <th width="70">车号:</th>
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <form name="myform" id="myform" method="post" action="/carLists">
+            <form name="myform" id="myform" method="post" action="/carManage/carLists">
 
                 <div class="result-content">
                     <table class="result-tab" width="100%">
@@ -64,26 +64,26 @@
                             <td th:text="${car.driverAddress}"></td>
                             <td th:text="${car.driverIDCard}"></td>
                             <td>
-                                <a class="link-update" th:href="@{/carEdit/}+${car.carId}">修改</a>
-                                <a class="link-del" href="#">删除</a>
+                                <a class="link-update" th:href="@{/carManage/carEdit/}+${car.carId}">修改</a>
+                                <a class="link-del" th:href="@{/carManage/deleteCar/}+${car.carId}">删除</a>
                             </td>
 
                         </tr>
 
                         </tbody>
                     </table>
-<!--                    <div th:class="list-page">-->
-<!--                        <span th:text="'共' + (${pages}) + '页'"></span>-->
-<!--                        <span th:text="'当前第' + (${pageNo} + '页')"></span>-->
-<!--                        <a th:href="@{/carLists(pageNO=1)}">首页</a>-->
-<!--                        <span th:if="${pageNo} != 1">-->
-<!--                            <a th:href="@{/carLists(pageNo=${pageNo} - 1)}"> 上一页 </a>-->
-<!--                        </span>-->
-<!--                        <span th:if="${pageNo} != ${pages}">-->
-<!--                            <a th:href="@{/carLists(pageNo=${pageNo} + 1)}"> 下一页 </a>-->
-<!--                        </span>-->
-<!--                        <a th:href="@{/carLists(pageNo=${pages})}">尾页</a>-->
-<!--                    </div>-->
+                    <div th:class="list-page">
+                        <span th:text="'共' + (${pages}) + '页'"></span>
+                        <span th:text="'当前第' + (${pageNo} + '页')"></span>
+                        <a th:href="@{/carManage/carLists(pageNO=1)}">首页</a>
+                        <span th:if="${pageNo} != 1">
+                            <a th:href="@{/carManage/carLists(pageNo=${pageNo} - 1)}"> 上一页 </a>
+                        </span>
+                        <span th:if="${pageNo} != ${pages}">
+                            <a th:href="@{/carManage/carLists(pageNo=${pageNo} + 1)}"> 下一页 </a>
+                        </span>
+                        <a th:href="@{/carManage/carLists(pageNo=${pages})}">尾页</a>
+                    </div>
                 </div>
             </form>
         </div>
@@ -122,19 +122,18 @@
         var car = {
             carNumber:carnumber.toUpperCase(),carLicensePlateAreaCode:carn,licensePlateAreaName:licensePlateAreaName
         }
-
         $.ajax({
 
             type:"post",
-            url:"/addCar",
+            url:"/carManage/addCar",
             datatype:"json",
             data:{car:JSON.stringify(car)},
             success:function(data){
-                alert(data) ;
+                // alert(data) ;
+                location="[[@{/carManage/carLists}]]";
             }
         });
 
     }
-
 </script>
 </html>
