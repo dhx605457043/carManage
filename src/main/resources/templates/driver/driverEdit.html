@@ -1,10 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{index::menu-title}"></head>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+
 <body>
 
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div th:insert="~{index::menu-menu}"></div>
+    </div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list">
+                <i class="icon-font"></i>
+                <a href="index">首页</a>
+                <span class="crumb-step"></span>
+                <span class="crumb-step">&gt;</span>
+                <span>新增车辆</span>
+            </div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="/jscss/admin/design/add" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                        <tr>
+                            <th width="60"><i class="require-red"></i>姓名：</th>
+                            <td>
+                                <input class="common-text required" id="driverName" size="50" th:value="${driver.driverName}" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>电话：</th>
+                            <td>
+                                <input class="common-text required" id="driverPhoneNumber" size="50" th:value="${driver.driverPhoneNumber}" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>住址：</th>
+                            <td>
+                                <input class="common-text required" id="driverAddress" size="50" th:value="${driver.driverAddress}" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>身份证：</th>
+                            <td>
+                                <input class="common-text required" id="driverIDCard" size="50" th:value="${driver.driverIDCard}" type="text">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input class="btn btn-primary btn6 mr10" value="提交" onclick="upDateDriver()" >
+                                <input class="btn btn6" onClick="history.go(-1)" value="返回" type="button">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+</div>
 </body>
+<script>
+    function upDateDriver() {
+
+        var driverRequest = {
+            driverId:[[${driver.driverId}]],
+            driverName:$("#driverName").val(),
+            driverPhoneNumber:$("#driverPhoneNumber").val(),
+            driverAddress:$("#driverAddress").val(),
+            driverIDCard:$("#driverIDCard").val()
+        };
+        // console(driverRequest)
+        $.ajax({
+            type:"post",
+            url:"/driverManage/updateDriver",
+            datatype:"json",
+            data:{driver:JSON.stringify(driverRequest)},
+            success:function (data) {
+                // alert(data)
+
+                location="[[@{/driverManage/driverListsAll}]]";
+            }
+
+        })
+    }
+</script>
 </html>

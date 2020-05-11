@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.carmanage.carDao.DriverListMapper">
-    <resultMap id="BaseResultMap" type="DriverListEntity"></resultMap>
+    <!--    <resultMap id="BaseResultMap" type="DriverListEntity"></resultMap>-->
+    <!--    使用  resultType ：对应Response 主要针对于从数据库中提取相应的数据出来-->
+    <!--    使用parameterType ：对应Request  主要针对于   将信息存入到数据库中  如：  insert 增加数据到数据库zhong   Update等-->
+    <!--    Response 返回的数据-->
+    <!--    Request 传入的数据-->
     <select id="driverListPage"
             resultType="com.carmanage.entity.DriverListEntity"
             parameterType="com.carmanage.entity.DriverListEntity">
@@ -16,5 +20,23 @@
     <select id="selectAllDriver" resultType="com.carmanage.entity.DriverListEntity">
         select *
         from driverList
+    </select>
+    <update id="updateDriver" parameterType="com.carmanage.controller.request.UpdateDriverRequest">
+        update driverList
+        set driverName=#{driverName},
+        driverPhoneNumber=#{driverPhoneNumber},
+        driverAddress=#{driverAddress},
+        driverIDCard=#{driverIDCard}
+        <where>
+            driverId=#{driverId}
+        </where>
+    </update>
+    <select id="selectDriverById" parameterType="java.lang.Integer" resultType="com.carmanage.controller.response.SelectDriverByIdResponse">
+        select *
+        from driverList
+        <where>
+            driverId=#{driverId}
+        </where>
+
     </select>
 </mapper>

@@ -35,7 +35,9 @@
                                 <select name="carn" id="carn">
                                     <option th:selected="${license.licensePlateAreaCode} == ${car.carLicensePlateAreaCode}"
                                             th:each="license:${licenses}" th:value="${license.licensePlateAreaCode}"
-                                            th:text="${license.licensePlateAreaName}"></option>
+                                            th:text="${license.licensePlateAreaName}">
+
+                                    </option>
                                 </select>
                                 <input class="common-text required" id="carNumber" name="title" size="50" th:value="${car.carNumber}" style="text-transform:uppercase;" type="text">
                             </td>
@@ -47,7 +49,9 @@
                                     <option th:selected="${driver.driverId} == ${car.carDriverId}"
                                             th:each="driver:${drivers}"
                                             th:value="${driver.driverId}"
-                                            th:text="${driver.driverName}"></option>
+                                            th:text="${driver.driverName}">
+
+                                    </option>
                                 </select>
                                 <!--                                <input class="common-text required" id="title" name="title" size="50" value="" type="text">-->
                             </td>

@@ -32,13 +32,12 @@
                     <a th:href="driverAdd"><i class="icon-font"></i>添加司机</a>
                 </div>
             </div>
-            <form name="myform" id="myform" method="post" action="/driverList/driverLists">
+            <form name="myform" id="myform" method="post" action="/driverManage/driverLists">
 
                 <div class="result-content">
                     <table class="result-tab" width="100%">
                         <thead>
                         <tr>
-<!--                            <th>车牌</th>-->
                             <th>司机姓名</th>
                             <th>司机电话</th>
                             <th>司机住址</th>
@@ -48,14 +47,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="car:${cars}">
-<!--                            <td th:text="${car.carNumber}"></td>-->
-                            <td th:text="${car.driverName}"></td>
-                            <td th:text="${car.driverPhoneNumber}"></td>
-                            <td th:text="${car.driverAddress}"></td>
-                            <td th:text="${car.driverIDCard}"></td>
+                        <tr th:each="driver:${drivers}">
+                            <td th:text="${driver.driverName}"></td>
+                            <td th:text="${driver.driverPhoneNumber}"></td>
+                            <td th:text="${driver.driverAddress}"></td>
+                            <td th:text="${driver.driverIDCard}"></td>
                             <td>
-                                <a class="link-update" >修改</a>
+                                <a class="link-update" th:href="@{/driverManage/driverEdit/}+${driver.driverId}" >修改</a>
                                 <a class="link-del" >删除</a>
                             </td>
                         </tr>
@@ -65,14 +63,14 @@
                     <div th:class="list-page">
                         <span th:text="'共' + (${pages}) + '页'"></span>
                         <span th:text="'当前第' + (${pageNo} + '页')"></span>
-                        <a th:href="@{/driverList/dirverLists(pageNO=1)}">首页</a>
+                        <a th:href="@{/driverManage/dirverLists(pageNo=1)}">首页</a>
                         <span th:if="${pageNo} != 1">
-                            <a th:href="@{/driverList/dirverLists(pageNo=${pageNo} - 1)}"> 上一页 </a>
+                            <a th:href="@{/driverManage/dirverLists(pageNo=${pageNo} - 1)}"> 上一页 </a>
                         </span>
                         <span th:if="${pageNo} != ${pages}">
-                            <a th:href="@{/driverList/dirverLists(pageNo=${pageNo} + 1)}"> 下一页 </a>
+                            <a th:href="@{/driverManage/dirverLists(pageNo=${pageNo} + 1)}"> 下一页 </a>
                         </span>
-                        <a th:href="@{/driverList/dirverLists(pageNo=${pages})}">尾页</a>
+                        <a th:href="@{/driverManage/dirverLists(pageNo=${pages})}">尾页</a>
                     </div>
                 </div>
             </form>
@@ -82,24 +80,24 @@
 </div>
 
 </body>
-<script th:inline="javascript">
-    function findDriver() {
-        var driverPhoneNumber = $("#driverPhoneNumber").val();  // $("#carNumber") 通过 id 查找对应页面元素  .val() 获取元素value值方法  并付给名字为carNumber1 的变量
-        console.log(driverPhoneNumber);                  // 后台输出参数值
-        var param = {};                          // 定义JSON变量
-        var url = "/driverList/driverListsAll"               // 后台接收controller 地址
-        param.driverPhoneNumber = driverPhoneNumber;            // 给json变量传入参数   key为： carNumber（后台接收controller的id名字）   value为： carNumber1
-        $.ajax({
-            url: url,
-            type: "GET",                         // 请求类型 常用 GET、POST  ,  Springboot  get请求对应  @GetMapping（等同于 @RequestMapping(method = Requst.GET)）     post请求对应 @PostMapping   （等同于 @RequestMapping(method = Requst.POST)）
-            dataType: "JSON",                    // 后台返回数据类型  常用 JSON、String
-            data: param,                         // 后台接收参数
-            success: function(result) {
-                console.log(result);             // ajax 调用成功返回的方法  result为返回的参数，名字不固定
-            },
-            error: function(err) {               // ajax 调用失败返回的方法  err为返回的参数，名字不固定
-            }
-        });
-    }
-</script>
+<!--<script th:inline="javascript">-->
+<!--    function findDriver() {-->
+<!--        var driverPhoneNumber = $("#driverPhoneNumber").val();  // $("#carNumber") 通过 id 查找对应页面元素  .val() 获取元素value值方法  并付给名字为carNumber1 的变量-->
+<!--        console.log(driverPhoneNumber);                  // 后台输出参数值-->
+<!--        var param = {};                          // 定义JSON变量-->
+<!--        var url = "/driverList/driverListsAll"               // 后台接收controller 地址-->
+<!--        param.driverPhoneNumber = driverPhoneNumber;            // 给json变量传入参数   key为： carNumber（后台接收controller的id名字）   value为： carNumber1-->
+<!--        $.ajax({-->
+<!--            url: url,-->
+<!--            type: "GET",                         // 请求类型 常用 GET、POST  ,  Springboot  get请求对应  @GetMapping（等同于 @RequestMapping(method = Requst.GET)）     post请求对应 @PostMapping   （等同于 @RequestMapping(method = Requst.POST)）-->
+<!--            dataType: "JSON",                    // 后台返回数据类型  常用 JSON、String-->
+<!--            data: param,                         // 后台接收参数-->
+<!--            success: function(result) {-->
+<!--                console.log(result);             // ajax 调用成功返回的方法  result为返回的参数，名字不固定-->
+<!--            },-->
+<!--            error: function(err) {               // ajax 调用失败返回的方法  err为返回的参数，名字不固定-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->
 </html>

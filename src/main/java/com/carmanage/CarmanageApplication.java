@@ -23,8 +23,8 @@ public class CarmanageApplication {
             public void addViewControllers(ViewControllerRegistry registry) {
                 registry.addViewController("/index").setViewName("index");
                 registry.addViewController("/test").setViewName("test");
-                registry.addViewController("/driverAdd").setViewName("driverAdd");
-                registry.addViewController("/design").setViewName("design");
+//                registry.addViewController("/driverAdd").setViewName("driverAdd");
+//                registry.addViewController("/design").setViewName("design");
 //                registry.addViewController("/carEdit").setViewName("carEdit");
 //                registry.addViewController("/system").setViewName("system");
 //                registry.addViewController("/insert").setViewName("insert");

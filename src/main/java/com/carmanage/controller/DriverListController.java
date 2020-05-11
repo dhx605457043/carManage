@@ -1,13 +1,15 @@
 package com.carmanage.controller;
 
+import com.carmanage.controller.request.UpdateDriverRequest;
+import com.carmanage.controller.response.SelectDriverByIdResponse;
 import com.carmanage.entity.DriverListEntity;
 import com.carmanage.service.DriverListService;
 import com.github.pagehelper.PageInfo;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -27,11 +29,27 @@ public class DriverListController {
     public String driverList (Model model, DriverListEntity driverListEntity, HttpServletRequest request) {
         Integer pageNo = request.getParameter("pageNo") == null ? 1 : Integer.valueOf(request.getParameter("pageNo"));
         PageInfo<DriverListEntity> pageInfo = driverListService.allDriverList(pageNo,20, driverListEntity);
-        List<DriverListEntity> carListPage = pageInfo.getList();
+        List<DriverListEntity> driverListEntities = pageInfo.getList();
         model.addAttribute("searchKey", "");
-        model.addAttribute("cars",carListPage);
+        model.addAttribute("drivers",driverListEntities);
         model.addAttribute("pageNo",pageInfo.getPageNum());
         model.addAttribute("pages",pageInfo.getPages());
         return "driver/driverList";
+    }
+
+    @PostMapping(value = "/updateDriver")
+    @ResponseBody
+    public String updateDriver (@RequestParam("driver") String driver) {
+        JSONObject jsonObject = JSONObject.fromObject(driver);
+        UpdateDriverRequest request = (UpdateDriverRequest) JSONObject.toBean(jsonObject,UpdateDriverRequest.class);
+        driverListService.updateDriver(request);
+        return "成功";
+    }
+
+    @GetMapping(value = "/driverEdit/{driverId}")
+    public String editDriver (Model model,@PathVariable("driverId") int driverId) {
+        SelectDriverByIdResponse driverModel = driverListService.selectDriverById(driverId);
+        model.addAttribute("driver",driverModel);
+        return "driver/driverEdit";
     }
 }

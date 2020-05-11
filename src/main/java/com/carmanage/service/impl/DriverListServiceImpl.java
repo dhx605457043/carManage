@@ -1,6 +1,8 @@
 package com.carmanage.service.impl;
 
 import com.carmanage.carDao.DriverListMapper;
+import com.carmanage.controller.request.UpdateDriverRequest;
+import com.carmanage.controller.response.SelectDriverByIdResponse;
 import com.carmanage.entity.DriverListEntity;
 import com.carmanage.service.DriverListService;
 import com.github.pagehelper.PageHelper;
@@ -35,5 +37,16 @@ public class DriverListServiceImpl implements DriverListService {
     public List<DriverListEntity> allDriverListNoPage() {
         List<DriverListEntity> driEntityList = driverListDao.selectAllDriver();
         return driEntityList;
+    }
+
+    @Override
+    public void updateDriver(UpdateDriverRequest request) {
+        driverListDao.updateDriver(request);
+    }
+
+    @Override
+    public SelectDriverByIdResponse selectDriverById(Integer driverId) {
+        SelectDriverByIdResponse selectDriverByIdResponse = driverListDao.selectDriverById(driverId);
+        return selectDriverByIdResponse;
     }
 }
