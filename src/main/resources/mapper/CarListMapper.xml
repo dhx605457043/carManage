@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.carmanage.carDao.CarListMapper">
-    <!--    <resultMap id="BaseResultMap" type="CarListEntityEx"></resultMap>-->
+<mapper namespace="com.carmanage.dao.CarListMapper">
+    <!--    <resultMap id="BaseResultMap" type="DriverListEntity"></resultMap>-->
+    <!--    使用  resultType ：对应Response 主要针对于从数据库中提取相应的数据出来-->
+    <!--    使用parameterType ：对应Request  主要针对于   将信息存入到数据库中  如：  insert 增加数据到数据库zhong   Update等-->
+    <!--    Response 返回的数据-->
+    <!--    Request 传入的数据-->
     <select id="carListPage" resultType="com.carmanage.entity.EX.CarListEntityEx" parameterType="com.carmanage.entity.EX.CarListEntityEx">
         select *
         from carList
@@ -42,6 +46,14 @@
         from carList
         where carId=#{carId}
     </delete>
+    <select id="orderSelectAllCar" resultType="com.carmanage.controller.response.OrderSelectAllCarResponse">
+        select licensePlateAreaName,
+                carNumber
+                from
+                carList
+                left join licenseplatearealist on carList.carLicensePlateAreaCode=licenseplatearealist.licensePlateAreaCode
+
+    </select>
 
 
 </mapper>

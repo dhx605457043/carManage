@@ -1,4 +1,4 @@
-package com.carmanage.carDao;
+package com.carmanage.dao;
 
 import com.carmanage.entity.CarLicenseListEntity;
 import org.springframework.stereotype.Repository;

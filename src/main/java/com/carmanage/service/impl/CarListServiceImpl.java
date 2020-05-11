@@ -1,6 +1,9 @@
 package com.carmanage.service.impl;
 
-import com.carmanage.carDao.CarListMapper;
+
+
+import com.carmanage.controller.response.OrderSelectAllCarResponse;
+import com.carmanage.dao.CarListMapper;
 import com.carmanage.entity.CarListEntity;
 import com.carmanage.entity.EX.CarListEntityEx;
 import com.carmanage.service.CarListService;
@@ -9,7 +12,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class CarListServiceImpl implements CarListService {
@@ -51,5 +54,11 @@ public class CarListServiceImpl implements CarListService {
     @Override
     public void deleteCarById(int carId) {
         carListMapper.deleteCarByCarId(carId);
+    }
+
+    @Override
+    public List<OrderSelectAllCarResponse> orderSelectAllCar() {
+        List<OrderSelectAllCarResponse> responses = carListMapper.orderSelectAllCar();
+        return responses;
     }
 }

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{index::menu-title}"></head>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+
+<body>
+
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div th:insert="~{index::menu-menu}"></div>
+    </div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list">
+                <i class="icon-font"></i>
+                <a href="index">首页</a>
+                <span class="crumb-step"></span>
+                <span class="crumb-step">&gt;</span>
+                <span>新增订单</span>
+            </div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action="" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                        <tr>
+                            <th width="80"><i class="require-red"></i>过江日期：</th>
+                            <td>
+                                <input class="common-text" id="data" type="text" >
+                            </td>
+                        </tr>
+                        <tr>
+                            <th ><i class="require-red"></i>过江车号：</th>
+                            <td >
+                                <select name="carn" id="carn">
+                                    <option th:each="car:${cars}" th:value="${car.carId}"
+                                            th:text="${car.licensePlateAreaName} + ${car.carNumber}">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>货主：</th>
+                            <td>
+                                <input class="common-text required" id="" size="50" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>货物：</th>
+                            <td>
+                                <input class="common-text required" id="" size="50" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>司机费用：</th>
+                            <td>
+                                <input class="common-text required" id="" size="50" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>中国费用：</th>
+                            <td>
+                                <input class="common-text required" id="" size="50" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>朝鲜费用：</th>
+                            <td>
+                                <input class="common-text required" id="" size="50" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>利润：</th>
+                            <td>
+                                <input class="common-text required" id="" size="50" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>结帐状态：</th>
+                            <td>
+                                <input class="common-text required" id="" size="50" type="text">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input class="btn btn-primary btn6 mr10" value="提交" onclick="addDriver()" >
+                                <input class="btn btn6" onClick="history.go(-1)" value="返回" type="button">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!--/main-->
+</div>
+</body>
+<script src="\laydate\laydate.js"></script> <!-- 改成你的路径 -->
+<script>
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#data' //指定元素
+    });
+</script>
+<script>
+    function addDriver() {
+        var driverN = $("#driverName").val();
+        var driverPN = $("#driverPhoneNumber").val();
+        var driverID = $("#driverIDCard").val();
+        var driverA = $("#driverAddress").val();
+
+        var driverRequest = {
+            driverName:driverN,
+            driverPhoneNumber:driverPN,
+            driverAddress:driverA,
+            driverIDCard:driverID
+        };
+        // console(driverRequest)
+        $.ajax({
+            type:"post",
+            url:"/driverManage/addDriver",
+            datatype:"json",
+            data:{driver:JSON.stringify(driverRequest)},
+            success:function (data) {
+                // alert(data)
+                location="[[@{/driverManage/driverListsAll}]]";
+            }
+
+        })
+    }
+    function isEmpty(obj) {
+        if (typeof obj === 'undefined' || obj == null || obj === '') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+</script>
+</html>

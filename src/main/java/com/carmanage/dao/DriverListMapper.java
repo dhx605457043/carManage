@@ -1,4 +1,5 @@
-package com.carmanage.carDao;
+package com.carmanage.dao;
+
 
 import com.carmanage.controller.request.AddDriverRequest;
 import com.carmanage.controller.request.UpdateDriverRequest;

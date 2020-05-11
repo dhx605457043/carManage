@@ -1,6 +1,6 @@
 package com.carmanage.service.impl;
 
-import com.carmanage.carDao.CarLicenseListMapper;
+import com.carmanage.dao.CarLicenseListMapper;
 import com.carmanage.entity.CarLicenseListEntity;
 import com.carmanage.service.CarLicenseListService;
 import org.springframework.beans.factory.annotation.Autowired;

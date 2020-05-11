@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@MapperScan("com.carmanage.carDao")
+@MapperScan("com.carmanage.dao")
 @SpringBootApplication
 public class CarmanageApplication {
 
@@ -24,7 +24,7 @@ public class CarmanageApplication {
                 registry.addViewController("/index").setViewName("index");
                 registry.addViewController("/driver/test").setViewName("driver/test");
                 registry.addViewController("/driver/driverAdd").setViewName("driver/driverAdd");
-//                registry.addViewController("/design").setViewName("design");
+                registry.addViewController("/order/orderAdd").setViewName("/order/orderAdd");
 //                registry.addViewController("/carEdit").setViewName("carEdit");
 //                registry.addViewController("/system").setViewName("system");
 //                registry.addViewController("/insert").setViewName("insert");
