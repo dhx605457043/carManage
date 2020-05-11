@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.carmanage.carDao.CarLicenseListMapper">
-    <resultMap id="BaseResultMap" type="CarLicenseListEntity"></resultMap>
+<!--    <resultMap id="BaseResultMap" type="CarLicenseListEntity"></resultMap>-->
     <select id="selectAllLicense" resultType="com.carmanage.entity.CarLicenseListEntity">
         select * from licenseplatearealist
     </select>

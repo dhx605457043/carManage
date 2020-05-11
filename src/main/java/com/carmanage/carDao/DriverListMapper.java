@@ -1,5 +1,6 @@
 package com.carmanage.carDao;
 
+import com.carmanage.controller.request.AddDriverRequest;
 import com.carmanage.controller.request.UpdateDriverRequest;
 import com.carmanage.controller.response.SelectDriverByIdResponse;
 import com.carmanage.entity.DriverListEntity;
@@ -13,4 +14,6 @@ public interface DriverListMapper {
     List<DriverListEntity> selectAllDriver ();
     void updateDriver (UpdateDriverRequest request);
     SelectDriverByIdResponse selectDriverById (Integer driverId);
+    void addDriver (AddDriverRequest request);
+    void deleteDriver (Integer driverId);
 }

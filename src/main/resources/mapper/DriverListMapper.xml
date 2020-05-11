@@ -39,4 +39,18 @@
         </where>
 
     </select>
+    <insert id="addDriver" parameterType="com.carmanage.controller.request.AddDriverRequest">
+        insert into driverList
+            (driverName, driverPhoneNumber, driverAddress, driverIDCard)
+        values
+        (#{driverName}, #{driverPhoneNumber}, #{driverAddress}, #{driverIDCard})
+    </insert>
+    <delete id="deleteDriver" parameterType="java.lang.Integer">
+        delete
+        from driverList
+        <where>
+            driverId=#{driverId}
+        </where>
+
+    </delete>
 </mapper>

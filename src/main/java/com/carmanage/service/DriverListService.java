@@ -13,4 +13,6 @@ public interface DriverListService {
     List<DriverListEntity> allDriverListNoPage ();
     void updateDriver (UpdateDriverRequest request);
     SelectDriverByIdResponse selectDriverById (Integer driverId);
+    void addDriver (String request);
+    void deleteDriver (Integer driverId);
 }

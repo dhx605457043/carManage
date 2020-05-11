@@ -39,11 +39,10 @@ public class DriverListController {
 
     @PostMapping(value = "/updateDriver")
     @ResponseBody
-    public String updateDriver (@RequestParam("driver") String driver) {
+    public void updateDriver (@RequestParam("driver") String driver) {
         JSONObject jsonObject = JSONObject.fromObject(driver);
         UpdateDriverRequest request = (UpdateDriverRequest) JSONObject.toBean(jsonObject,UpdateDriverRequest.class);
         driverListService.updateDriver(request);
-        return "成功";
     }
 
     @GetMapping(value = "/driverEdit/{driverId}")
@@ -51,5 +50,16 @@ public class DriverListController {
         SelectDriverByIdResponse driverModel = driverListService.selectDriverById(driverId);
         model.addAttribute("driver",driverModel);
         return "driver/driverEdit";
+    }
+
+    @PostMapping(value = "/addDriver")
+    @ResponseBody
+    public void addDriver (@RequestParam("driver") String request) {
+        driverListService.addDriver(request);
+    }
+    @GetMapping(value = "/deleteDriver/{driverId}")
+    public String deleteDriver (@PathVariable("driverId") Integer driverId) {
+        driverListService.deleteDriver(driverId);
+        return "redirect:/driverManage/driverListsAll";
     }
 }

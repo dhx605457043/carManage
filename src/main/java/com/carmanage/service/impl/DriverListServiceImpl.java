@@ -1,12 +1,14 @@
 package com.carmanage.service.impl;
 
 import com.carmanage.carDao.DriverListMapper;
+import com.carmanage.controller.request.AddDriverRequest;
 import com.carmanage.controller.request.UpdateDriverRequest;
 import com.carmanage.controller.response.SelectDriverByIdResponse;
 import com.carmanage.entity.DriverListEntity;
 import com.carmanage.service.DriverListService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,5 +50,16 @@ public class DriverListServiceImpl implements DriverListService {
     public SelectDriverByIdResponse selectDriverById(Integer driverId) {
         SelectDriverByIdResponse selectDriverByIdResponse = driverListDao.selectDriverById(driverId);
         return selectDriverByIdResponse;
+    }
+    @Override
+    public void addDriver(String request) {
+        JSONObject jsonObject = JSONObject.fromObject(request);
+        AddDriverRequest addDriverRequest = (AddDriverRequest) JSONObject.toBean(jsonObject,AddDriverRequest.class);
+        driverListDao.addDriver(addDriverRequest);
+    }
+
+    @Override
+    public void deleteDriver(Integer driverId) {
+        driverListDao.deleteDriver(driverId);
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.carmanage.carDao.CarListMapper">
-<!--    <resultMap id="BaseResultMap" type="CarListEntityEx"></resultMap>-->
+    <!--    <resultMap id="BaseResultMap" type="CarListEntityEx"></resultMap>-->
     <select id="carListPage" resultType="com.carmanage.entity.EX.CarListEntityEx" parameterType="com.carmanage.entity.EX.CarListEntityEx">
         select *
         from carList
@@ -17,7 +17,7 @@
         select * from carList where carNumber like concat(#{carNumber}, '%')
     </select>
     <insert id="carAdd" parameterType="com.carmanage.entity.CarListEntity">
-        insert into carList (carNumber,carLicensePlateAreaCode)values (#{carNumber},#{carLicensePlateAreaCode})
+        insert into carList (carNumber,carLicensePlateAreaCode) values (#{carNumber},#{carLicensePlateAreaCode})
     </insert>
     <select id="selectCarByCarId" resultType="com.carmanage.entity.EX.CarListEntityEx">
         select *

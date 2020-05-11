@@ -44,7 +44,6 @@ public class CarListController {
         model.addAttribute("pages",pageInfo.getPages());
         return "car/carList";
     }
-    //        @PostMapping(value = "/carAdd")
     @PostMapping("/addCar")
     @ResponseBody
     public String addCar (@RequestParam("car") String car) {
@@ -64,8 +63,6 @@ public class CarListController {
         } else  {
             return "请输入正确的车牌号";
         }
-
-//        return "0";
     }
 
     @GetMapping(value = "/carEdit/{carId}")
@@ -80,13 +77,12 @@ public class CarListController {
     }
 
     @PostMapping(value = "/updateCar")
-//    @ResponseBody
-    public String updateCar (@RequestParam("car") String car) {
+    @ResponseBody
+    public void updateCar (@RequestParam("car") String car) {
         JSONObject jsonObject = JSONObject.fromObject(car);
-//        System.out.println("jsonObject==>" + jsonObject);
         CarListEntity carListEntity = (CarListEntity) JSONObject.toBean(jsonObject, CarListEntity.class);
         carListService.updateCarByCarId(carListEntity);
-        return "test";
+//        return "test";
     }
     @GetMapping(value = "/deleteCar/{carId}")
     public String delectCar (@PathVariable("carId") int carId) {

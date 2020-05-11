@@ -15,7 +15,7 @@
         </div>
         <div class="search-wrap">
             <div class="search-content">
-                <form method="get" action="/driverList/driverListsAll">
+                <form method="get" action="/driverManage/driverListsAll">
                     <table class="search-tab">
                         <tr>
                             <th width="70">手机号:</th>
@@ -29,7 +29,7 @@
         <div class="result-wrap">
             <div class="result-title">
                 <div class="result-list">
-                    <a th:href="driverAdd"><i class="icon-font"></i>添加司机</a>
+                    <a th:href="@{/driver/driverAdd}"><i class="icon-font"></i>添加司机</a>
                 </div>
             </div>
             <form name="myform" id="myform" method="post" action="/driverManage/driverLists">
@@ -53,8 +53,8 @@
                             <td th:text="${driver.driverAddress}"></td>
                             <td th:text="${driver.driverIDCard}"></td>
                             <td>
-                                <a class="link-update" th:href="@{/driverManage/driverEdit/}+${driver.driverId}" >修改</a>
-                                <a class="link-del" >删除</a>
+                                <a class="link-update" th:href="@{/driverManage/driverEdit/} + ${driver.driverId}" >修改</a>
+                                <a class="link-del" th:href="@{/driverManage/deleteDriver/} + ${driver.driverId}" >删除</a>
                             </td>
                         </tr>
 
