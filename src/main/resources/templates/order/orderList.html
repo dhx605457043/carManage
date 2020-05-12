@@ -4,7 +4,8 @@
     <!--    <script src="/laydate/laydate.js"></script>-->
     <!--    <link rel="stylesheet" href="../static/laydate/theme/default/laydate.css">-->
 </head>
-
+<!--<link rel="stylesheet" href="/layui/css/layui.css" media="all">-->
+<script src="/layui/layui.js" charset="utf-8"></script>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 
 <body>
@@ -28,7 +29,7 @@
                         <tr>
                             <th width="70">日期:</th>
                             <td>
-                                <input class="common-text" placeholder="日期" id="test1" type="text" >
+                                <input class="common-text" placeholder="日期" id="orderDate" type="text" >
                             </td>
                             <th width="70">车号:</th>
                             <td><input class="common-text" placeholder="车号" id="orderCar" type="text" th:value="${searchKeyCar}"></td>
@@ -75,17 +76,26 @@
                             <td th:text="${order.chinaCost}"></td>
                             <td th:text="${order.koreaCost}"></td>
                             <td th:text="${order.profit}"></td>
-                            <td th:text="${order.orderType}"></td>
+                            <td th:text="${order.orderType} == 1 ? '是':'否'"></td>
 
                             <td>
-                                <a class="link-update" th:href="@{/orderManage/orderEdit/} + ${order.orderId}" >修改</a>
-                                <a class="link-del" th:href="@{/orderManage/deleteOrder/} + ${order.orderId}" >删除</a>
+                                <a class="link-update" th:href="@{/orderManage/toOrderEdit/} + ${order.orderId}" >修改</a>
+                                <a class="link-del" th:href="@{/orderManage/deleteOrderById/} + ${order.orderId}" >删除</a>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                     <div th:class="list-page">
-
+                        <span th:text="'共' + (${pages}) + '页'"></span>
+                        <span th:text="'当前第' + (${pageNo} + '页')"></span>
+                        <a th:href="@{/orderManage/orderLists(pageNO=1)}">首页</a>
+                        <span th:if="${pageNo} != 1">
+                            <a th:href="@{/orderManage/orderLists(pageNo=${pageNo} - 1)}"> 上一页 </a>
+                        </span>
+                        <span th:if="${pageNo} != ${pages}">
+                            <a th:href="@{/orderManage/orderLists(pageNo=${pageNo} + 1)}"> 下一页 </a>
+                        </span>
+                        <a th:href="@{/orderManage/orderLists(pageNo=${pages})}">尾页</a>
                     </div>
                 </div>
             </form>
@@ -96,11 +106,15 @@
 
 </body>
 
-<script src="\laydate\laydate.js"></script> <!-- 改成你的路径 -->
 <script>
     //执行一个laydate实例
-    laydate.render({
-        elem: '#test1' //指定元素
+    layui.use(['form', 'laydate'], function(){
+        var laydate = layui.laydate;
+
+        //常规用法
+        laydate.render({
+            elem: '#orderDate'
+        });
     });
 </script>
 </html>

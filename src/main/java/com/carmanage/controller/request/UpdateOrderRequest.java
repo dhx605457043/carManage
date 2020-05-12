@@ -1,15 +1,15 @@
-package com.carmanage.entity;
+package com.carmanage.controller.request;
 
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class OrderlistEntity {
+public class UpdateOrderRequest {
     private Integer orderId;
     private Integer ownerOfCargo;
     private Integer goodsName;
-    private Date orderDate;
+    private String orderDate;
     private Integer driverCost;
     private Integer chinaCost;
     private Integer koreaCost;
@@ -19,4 +19,6 @@ public class OrderlistEntity {
     private Integer orderType;
     private Integer quarantineCost;
     private String carNumber;
+    private String cargoName;
+    private String consignorName;
 }

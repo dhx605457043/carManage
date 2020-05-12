@@ -1,10 +1,214 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{index::menu-title}"></head>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<link rel="stylesheet" href="/layui/css/layui.css" media="all">
+<script src="/layui/layui.js" charset="utf-8"></script>
+
 <body>
 
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div th:insert="~{index::menu-menu}"></div>
+    </div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list">
+                <i class="icon-font"></i>
+                <a href="index">首页</a>
+                <span class="crumb-step"></span>
+                <span class="crumb-step">&gt;</span>
+                <span>修改订单</span>
+            </div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form class="layui-form" action="">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                        <tr>
+                            <th width="80"><i class="require-red"></i>过江日期：</th>
+                            <td>
+                                <input class="common-text" id="orderDate" type="text" th:value="${#dates.format(order.orderDate, 'yyyy-MM-dd')}">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th ><i class="require-red"></i>过江车号：</th>
+                            <td >
+                                <select id="carN">
+                                    <option th:each="car:${cars}"
+                                            th:value="${car.carId}"
+                                            th:text="${car.licensePlateAreaName} + ${car.carNumber}">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th><i class="require-red"></i>货主：</th>
+                            <td>
+                                <select id="consignorS">
+                                    <option th:value="0" th:text="请选择"></option>
+                                    <option th:each="consignor:${consignors}"
+                                            th:value="${consignor.consignorId}"
+                                            th:selected="${order.ownerOfCargo}==${consignor.consignorId}"
+                                            th:text="${consignor.consignorName}" >
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th><i class="require-red"></i>货物：</th>
+                            <td>
+                                <select id="cargoS">
+                                    <option th:value="0" th:text="请选择"></option>
+                                    <option th:each="cargo:${cargos}"
+                                            th:value="${cargo.cargoId}"
+                                            th:selected="${order.goodsName}==${cargo.cargoId}"
+                                            th:text="${cargo.cargoName}">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>运费：</th>
+                            <td>
+                                <input class="common-text required" id="freight" size="50" type="text" th:value="${order.freight}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>司机费用：</th>
+                            <td>
+                                <input class="common-text required" id="driverCost" size="50" type="text" th:value="${order.driverCost}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>隔离费用：</th>
+                            <td>
+                                <input class="common-text required" id="quarantineCost" size="50" type="text" th:value="${order.quarantineCost}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>中国费用：</th>
+                            <td>
+                                <input class="common-text required" id="chinaCost" size="50" type="text" th:value="${order.chinaCost}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>朝鲜费用：</th>
+                            <td>
+                                <input class="common-text required" id="koreaCost" size="50" type="text" th:value="${order.koreaCost}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>结帐状态：</th>
+                            <td>
+                                <input type="radio" name="orderType" value="1" title="是" th:checked="${order.orderType} == 1">
+                                <input type="radio" name="orderType" value="2" title="否" th:checked="${order.orderType} == 2">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input class="btn btn-primary btn6 mr10" value="提交" onclick="upDateOrder()" >
+                                <input class="btn btn6" onClick="history.go(-1)" value="返回" type="button">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
 </body>
+<script>
+    //执行一个laydate实例
+    layui.use(['form', 'laydate'], function(){
+        var laydate = layui.laydate;
+
+        //常规用法
+        laydate.render({
+            elem: '#orderDate'
+        });
+    });
+</script>
+<script>
+    function upDateOrder() {
+        var orderD = $("#orderDate").val();
+        var carN = $("#carN").val();
+        var consignorN = $("#consignorS").val();
+        var cargoN = $("#cargoS").val();
+        var carNumber = $("#carN").find("option:selected").text();
+        var freight = $("#freight").val();
+        var driverCost = $("#driverCost").val();
+        var quarantineCost = $("#quarantineCost").val();
+        var chinaCost = $("#chinaCost").val();
+        var koreaCost = $("#koreaCost").val();
+        var temp = document.getElementsByName("orderType");
+        var orderType;
+        for (i=0;i<temp.length;i++) {
+            if (temp[i].checked) {
+                orderType = temp[i].value;
+                break;
+            }
+        }
+        var profit = freight - driverCost - quarantineCost - chinaCost - koreaCost;
+
+        var orderRequest = {
+            orderId:[[${order.orderId}]],
+            ownerOfCargo:consignorN,
+            goodsName:cargoN,
+            orderDate:orderD,
+            driverCost:driverCost,
+            chinaCost:chinaCost,
+            koreaCost:koreaCost,
+            freight:freight,
+            orderCar:carN,
+            profit:profit,
+            orderType:orderType,
+            quarantineCost:quarantineCost,
+            carNumber:carNumber
+        };
+        // console(driverRequest)
+        // alert(
+        //     "orderD:"+orderRequest.orderDate+
+        //     "carN:"+orderRequest.orderCar+
+        //     "consignorN:"+orderRequest.goodsName+
+        //     "cargoN:"+orderRequest.ownerOfCargo+
+        //     "freight:"+orderRequest.freight+
+        //     "driverCost:"+orderRequest.driverCost+
+        //     "orderType:"+orderType+
+        //     "profit:"+profit
+        // );
+        $.ajax({
+            type:"post",
+            url:"/orderManage/updateOrderWithConditions",
+            datatype:"json",
+            data:{order:JSON.stringify(orderRequest)},
+            success:function (data) {
+                // alert(1)
+                location="[[@{/orderManage/orderLists}]]";
+            }
+
+        })
+    }
+    function isEmpty(obj) {
+        if (typeof obj === 'undefined' || obj == null || obj === '') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+</script>
 </html>

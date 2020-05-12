@@ -20,4 +20,38 @@
                  left join cargolist on orderlist.goodsName=cargolist.cargoId
     </select>
 
+    <select id="selectOrderById" parameterType="java.lang.Integer" resultType="com.carmanage.entity.EX.OrderListEntityEx">
+        select *
+        from orderList
+        <where>
+            orderId=#{orderId}
+        </where>
+    </select>
+
+    <update id="upDateOrderWithConditions" parameterType="com.carmanage.entity.EX.OrderListEntityEx">
+        update orderList
+        set ownerOfCargo=#{ownerOfCargo},
+        goodsName=#{goodsName},
+        orderDate=DATE_FORMAT(#{orderDate},'%y-%m-%d'),
+        driverCost=#{driverCost},
+        chinaCost=#{chinaCost},
+        koreaCost=#{koreaCost},
+        freight=#{freight},
+        orderCar=#{orderCar},
+        profit=#{profit},
+        orderType=#{orderType},
+        quarantineCost =#{quarantineCost},
+        carNumber=#{carNumber}
+        <where>
+            orderId=#{orderId}
+        </where>
+    </update>
+    <delete id="deleteOrderById" parameterType="java.lang.Integer">
+        delete
+        from orderList
+        <where>
+            orderId=#{orderId}
+        </where>
+    </delete>
+
 </mapper>

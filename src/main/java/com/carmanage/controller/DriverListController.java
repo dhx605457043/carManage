@@ -57,6 +57,7 @@ public class DriverListController {
     public void addDriver (@RequestParam("driver") String request) {
         driverListService.addDriver(request);
     }
+
     @GetMapping(value = "/deleteDriver/{driverId}")
     public String deleteDriver (@PathVariable("driverId") Integer driverId) {
         driverListService.deleteDriver(driverId);

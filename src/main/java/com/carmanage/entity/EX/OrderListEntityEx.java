@@ -7,6 +7,4 @@ import lombok.Data;
 public class OrderListEntityEx extends OrderlistEntity {
     private String cargoName;
     private String consignorName;
-    private String carNumber;
-    private String licensePlateAreaName;
 }
