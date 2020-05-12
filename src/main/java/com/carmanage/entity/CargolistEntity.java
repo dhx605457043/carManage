@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class CargolistEntity {
-    private Integer cargoid;
-    private String cargoname;
+    private Integer cargoId;
+    private String cargoName;
 }

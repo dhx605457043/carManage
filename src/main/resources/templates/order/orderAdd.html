@@ -38,7 +38,8 @@
                         <tr>
                             <th ><i class="require-red"></i>过江车号：</th>
                             <td >
-                                <select name="carn" id="carn">
+                                <select id="carn">
+
                                     <option th:each="car:${cars}" th:value="${car.carId}"
                                             th:text="${car.licensePlateAreaName} + ${car.carNumber}">
                                     </option>
@@ -48,11 +49,27 @@
                         <tr>
                             <th><i class="require-red"></i>货主：</th>
                             <td>
-                                <input class="common-text required" id="" size="50" type="text">
+                                <select  id="consignorS">
+
+                                    <option th:each="consignor:${consignors}" th:value="${consignor.consignorId}"
+                                            th:text="${consignor.consignorName}">
+                                    </option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
                             <th><i class="require-red"></i>货物：</th>
+                            <td>
+                                <select id="cargoS">
+
+                                    <option th:each="cargo:${cargos}" th:value="${cargo.cargoId}"
+                                            th:text="${cargo.cargoName}">
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>运费：</th>
                             <td>
                                 <input class="common-text required" id="" size="50" type="text">
                             </td>

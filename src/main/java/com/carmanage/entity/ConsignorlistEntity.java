@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class ConsignorlistEntity {
-    private Integer consignorid;
-    private String consignorname;
+    private Integer consignorId;
+    private String consignorName;
 }

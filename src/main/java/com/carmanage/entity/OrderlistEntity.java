@@ -6,15 +6,15 @@ import java.util.Date;
 
 @Data
 public class OrderlistEntity {
-    private Integer orderid;
-    private String ownerofcargo;
-    private String goodsname;
-    private Date orderdate;
-    private Integer drivercost;
-    private Integer chinacost;
-    private Integer koreacost;
+    private Integer orderId;
+    private String ownerOfCargo;
+    private String goodsName;
+    private Date orderDate;
+    private Integer driverCost;
+    private Integer chinaCost;
+    private Integer koreaCost;
     private Integer freight;
-    private Integer ordercar;
+    private Integer orderCar;
     private Integer profit;
-    private Integer ordertype;
+    private Integer orderType;
 }
