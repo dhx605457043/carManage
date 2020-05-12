@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--    <resultMap id="BaseResultMap" type="DriverListEntity"></resultMap>-->
+<!--    使用  resultType ：对应Response 主要针对于从数据库中提取相应的数据出来-->
+<!--    使用parameterType ：对应Request  主要针对于   将信息存入到数据库中  如：  insert 增加数据到数据库zhong   Update等-->
+<!--    Response 返回的数据-->
+<!--    Request 传入的数据-->
 <mapper namespace="com.carmanage.dao.OrderListMapper">
-
+    <insert id="addOrder" parameterType="com.carmanage.controller.request.AddOrderRequest">
+        insert into orderlist
+        (ownerOfCargo,goodsName,orderDate,driverCost,chinaCost,koreaCost,freight,orderCar,profit,orderType,quarantineCost,carNumber)
+        values
+        (#{ownerOfCargo},#{goodsName},DATE_FORMAT(#{orderDate},'%y-%m-%d'),#{driverCost},#{chinaCost},#{koreaCost},#{freight},#{orderCar},#{profit},#{orderType},#{quarantineCost},#{carNumber})
+    </insert>
+    <select id="selectAllOrder" resultType="com.carmanage.entity.EX.OrderListEntityEx">
+        select *
+        from orderlist
+                 left join carlist on orderlist.orderCar=carlist.carId
+                 left join consignorlist on orderlist.ownerOfCargo=consignorlist.consignorId
+                 left join cargolist on orderlist.goodsName=cargolist.cargoId
+    </select>
 
 </mapper>

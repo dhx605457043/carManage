@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="~{index::menu-title}"></head>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<link rel="stylesheet" href="/layui/css/layui.css" media="all">
+<script src="/layui/layui.js" charset="utf-8"></script>
 
 <body>
 
@@ -26,43 +28,49 @@
         </div>
         <div class="result-wrap">
             <div class="result-content">
-                <form action="" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                <form class="layui-form" action="">
                     <table class="insert-tab" width="100%">
                         <tbody>
                         <tr>
                             <th width="80"><i class="require-red"></i>过江日期：</th>
                             <td>
-                                <input class="common-text" id="data" type="text" >
+                                <input class="common-text" id="orderDate" type="text" >
                             </td>
                         </tr>
+
                         <tr>
                             <th ><i class="require-red"></i>过江车号：</th>
                             <td >
-                                <select id="carn">
-
-                                    <option th:each="car:${cars}" th:value="${car.carId}"
+                                <select id="carN">
+                                    <option th:value="0" th:text="请选择"></option>
+                                    <option th:each="car:${cars}"
+                                            th:value="${car.carId}"
                                             th:text="${car.licensePlateAreaName} + ${car.carNumber}">
                                     </option>
                                 </select>
                             </td>
                         </tr>
+
                         <tr>
                             <th><i class="require-red"></i>货主：</th>
                             <td>
-                                <select  id="consignorS">
-
-                                    <option th:each="consignor:${consignors}" th:value="${consignor.consignorId}"
-                                            th:text="${consignor.consignorName}">
+                                <select id="consignorS">
+                                    <option th:value="0" th:text="请选择"></option>
+                                    <option th:each="consignor:${consignors}"
+                                            th:value="${consignor.consignorId}"
+                                            th:text="${consignor.consignorName}" >
                                     </option>
                                 </select>
                             </td>
                         </tr>
+
                         <tr>
                             <th><i class="require-red"></i>货物：</th>
                             <td>
                                 <select id="cargoS">
-
-                                    <option th:each="cargo:${cargos}" th:value="${cargo.cargoId}"
+                                    <option th:value="0" th:text="请选择"></option>
+                                    <option th:each="cargo:${cargos}"
+                                            th:value="${cargo.cargoId}"
                                             th:text="${cargo.cargoName}">
                                     </option>
                                 </select>
@@ -71,44 +79,45 @@
                         <tr>
                             <th><i class="require-red"></i>运费：</th>
                             <td>
-                                <input class="common-text required" id="" size="50" type="text">
+                                <input class="common-text required" id="freight" size="50" type="text">
                             </td>
                         </tr>
                         <tr>
                             <th><i class="require-red"></i>司机费用：</th>
                             <td>
-                                <input class="common-text required" id="" size="50" type="text">
+                                <input class="common-text required" id="driverCost" size="50" type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><i class="require-red"></i>隔离费用：</th>
+                            <td>
+                                <input class="common-text required" id="quarantineCost" size="50" type="text">
                             </td>
                         </tr>
                         <tr>
                             <th><i class="require-red"></i>中国费用：</th>
                             <td>
-                                <input class="common-text required" id="" size="50" type="text">
+                                <input class="common-text required" id="chinaCost" size="50" type="text">
                             </td>
                         </tr>
                         <tr>
                             <th><i class="require-red"></i>朝鲜费用：</th>
                             <td>
-                                <input class="common-text required" id="" size="50" type="text">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th><i class="require-red"></i>利润：</th>
-                            <td>
-                                <input class="common-text required" id="" size="50" type="text">
+                                <input class="common-text required" id="koreaCost" size="50" type="text">
                             </td>
                         </tr>
                         <tr>
                             <th><i class="require-red"></i>结帐状态：</th>
                             <td>
-                                <input class="common-text required" id="" size="50" type="text">
+                                <input type="radio" name="orderType" value="1" title="是">
+                                <input type="radio" name="orderType" value="2" title="否" checked>
                             </td>
                         </tr>
 
                         <tr>
                             <th></th>
                             <td>
-                                <input class="btn btn-primary btn6 mr10" value="提交" onclick="addDriver()" >
+                                <input class="btn btn-primary btn6 mr10" value="提交" onclick="addOrder()" >
                                 <input class="btn btn6" onClick="history.go(-1)" value="返回" type="button">
                             </td>
                         </tr>
@@ -119,38 +128,74 @@
         </div>
 
     </div>
-    <!--/main-->
 </div>
 </body>
-<script src="\laydate\laydate.js"></script> <!-- 改成你的路径 -->
 <script>
     //执行一个laydate实例
-    laydate.render({
-        elem: '#data' //指定元素
+    layui.use(['form', 'laydate'], function(){
+        var laydate = layui.laydate;
+
+        //常规用法
+        laydate.render({
+            elem: '#orderDate'
+        });
     });
 </script>
 <script>
-    function addDriver() {
-        var driverN = $("#driverName").val();
-        var driverPN = $("#driverPhoneNumber").val();
-        var driverID = $("#driverIDCard").val();
-        var driverA = $("#driverAddress").val();
+    function addOrder() {
+        var orderD = $("#orderDate").val();
+        var carN = $("#carN").val();
+        var consignorN = $("#consignorS").val();
+        var cargoN = $("#cargoS").val();
+        var carNumber = $("#carN").find("option:selected").text();
+        var freight = $("#freight").val();
+        var driverCost = $("#driverCost").val();
+        var quarantineCost = $("#quarantineCost").val();
+        var chinaCost = $("#chinaCost").val();
+        var koreaCost = $("#koreaCost").val();
+        var temp = document.getElementsByName("orderType");
+        var orderType;
+        for (i=0;i<temp.length;i++) {
+            if (temp[i].checked) {
+                orderType = temp[i].value;
+                break;
+            }
+        }
+        var profit = freight - driverCost - quarantineCost - chinaCost - koreaCost;
 
-        var driverRequest = {
-            driverName:driverN,
-            driverPhoneNumber:driverPN,
-            driverAddress:driverA,
-            driverIDCard:driverID
+        var orderRequest = {
+            ownerOfCargo:consignorN,
+            goodsName:cargoN,
+            orderDate:orderD,
+            driverCost:driverCost,
+            chinaCost:chinaCost,
+            koreaCost:koreaCost,
+            freight:freight,
+            orderCar:carN,
+            profit:profit,
+            orderType:orderType,
+            quarantineCost:quarantineCost,
+            carNumber:carNumber
         };
         // console(driverRequest)
+        // alert(
+        //     "orderD:"+orderRequest.orderDate.class+
+        //     "carN:"+orderRequest.orderCar+
+        //     "consignorN:"+orderRequest.goodsName+
+        //     "cargoN:"+orderRequest.ownerOfCargo+
+        //     "freight:"+orderRequest.freight+
+        //     "driverCost:"+orderRequest.driverCost+
+        //     "orderType:"+orderType+
+        //     "profit:"+profit
+        // );
         $.ajax({
             type:"post",
-            url:"/driverManage/addDriver",
+            url:"/orderManage/orderAdd",
             datatype:"json",
-            data:{driver:JSON.stringify(driverRequest)},
+            data:{order:JSON.stringify(orderRequest)},
             success:function (data) {
                 // alert(data)
-                location="[[@{/driverManage/driverListsAll}]]";
+                location="[[@{/orderManage/orderLists}]]";
             }
 
         })

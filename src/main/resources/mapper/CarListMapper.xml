@@ -48,7 +48,8 @@
     </delete>
     <select id="orderSelectAllCar" resultType="com.carmanage.controller.response.OrderSelectAllCarResponse">
         select licensePlateAreaName,
-                carNumber
+                carNumber,
+               carId
                 from
                 carList
                 left join licenseplatearealist on carList.carLicensePlateAreaCode=licenseplatearealist.licensePlateAreaCode

@@ -7,8 +7,8 @@ import java.util.Date;
 @Data
 public class OrderlistEntity {
     private Integer orderId;
-    private String ownerOfCargo;
-    private String goodsName;
+    private Integer ownerOfCargo;
+    private Integer goodsName;
     private Date orderDate;
     private Integer driverCost;
     private Integer chinaCost;
@@ -17,4 +17,5 @@ public class OrderlistEntity {
     private Integer orderCar;
     private Integer profit;
     private Integer orderType;
+    private Integer quarantineCost;
 }

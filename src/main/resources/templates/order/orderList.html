@@ -54,16 +54,34 @@
                             <th th:width="100px">货主</th>
                             <th th:width="100px">货物</th>
                             <th th:width="100px">运费</th>
+                            <th th:width="100px">司机费用</th>
+                            <th th:width="100px">隔离费用</th>
                             <th th:width="100px">中国费用</th>
                             <th th:width="100px">朝鲜费用</th>
-                            <th th:width="100px">司机费用</th>
                             <th th:width="100px">利润</th>
                             <th th:width="50px">结账状态</th>
                             <th th:width="50px">操作</th>
                         </tr>
                         </thead>
                         <tbody>
+                        <tr th:each="order:${orders}">
+                            <td th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd')}"></td>
+                            <td th:text="${order.carNumber}"></td>
+                            <td th:text="${order.consignorName}"></td>
+                            <td th:text="${order.cargoName}"></td>
+                            <td th:text="${order.freight}"></td>
+                            <td th:text="${order.driverCost}"></td>
+                            <td th:text="${order.quarantineCost}"></td>
+                            <td th:text="${order.chinaCost}"></td>
+                            <td th:text="${order.koreaCost}"></td>
+                            <td th:text="${order.profit}"></td>
+                            <td th:text="${order.orderType}"></td>
 
+                            <td>
+                                <a class="link-update" th:href="@{/orderManage/orderEdit/} + ${order.orderId}" >修改</a>
+                                <a class="link-del" th:href="@{/orderManage/deleteOrder/} + ${order.orderId}" >删除</a>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                     <div th:class="list-page">

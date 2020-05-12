@@ -26,7 +26,7 @@ public class CarmanageApplication {
                 registry.addViewController("/driver/test").setViewName("driver/test");
                 registry.addViewController("/driver/driverAdd").setViewName("driver/driverAdd");
                 registry.addViewController("/order/orderAdd").setViewName("/order/orderAdd");
-//                registry.addViewController("/carEdit").setViewName("carEdit");
+                registry.addViewController("/test").setViewName("test");
 //                registry.addViewController("/system").setViewName("system");
 //                registry.addViewController("/insert").setViewName("insert");
 //                registry.addViewController("/carList").setViewName("carList");
