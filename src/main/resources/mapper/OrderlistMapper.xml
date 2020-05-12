@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carmanage.dao.OrderListMapper">
+
+<!--    <resultMap type=".entity.Orderlist" id="OrderlistMap">-->
+<!--        <result property="orderid" column="orderId" jdbcType="INTEGER"/>-->
+<!--        <result property="ownerofcargo" column="ownerOfCargo" jdbcType="VARCHAR"/>-->
+<!--        <result property="goodsname" column="goodsName" jdbcType="VARCHAR"/>-->
+<!--        <result property="orderdate" column="orderDate" jdbcType="TIMESTAMP"/>-->
+<!--        <result property="drivercost" column="driverCost" jdbcType="INTEGER"/>-->
+<!--        <result property="chinacost" column="chinaCost" jdbcType="INTEGER"/>-->
+<!--        <result property="koreacost" column="koreaCost" jdbcType="INTEGER"/>-->
+<!--        <result property="freight" column="freight" jdbcType="INTEGER"/>-->
+<!--        <result property="ordercar" column="orderCar" jdbcType="INTEGER"/>-->
+<!--    </resultMap>-->
+
+</mapper>

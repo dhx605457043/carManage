@@ -17,8 +17,6 @@ public class CarLicenseController {
     @GetMapping(value = "/selecAllLicense")
     public String selectLicense (Model model) {
         List<CarLicenseListEntity> licenseListEntities = carLicenseListService.selectAllLicense();
-//        System.out.println(licenseListEntities);
-//        model.addAllAttributes("",licenseListEntities);licenseListEntities
         model.addAttribute("licenses",licenseListEntities);
         return "carList";
     }
